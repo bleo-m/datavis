@@ -112,7 +112,7 @@ function Histogram(data, {
 
     chart = Histogram(remitances, {
     value: d => d.responses,
-    label: "Unemployment rate (%) →",
+    label: "Responses to remitence question",
     height: 500,
     color: "#FF5964"
     })
