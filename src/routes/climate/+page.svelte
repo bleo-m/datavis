@@ -1,19 +1,14 @@
 <script>
-  import '../../utilities/fonts.css'
-  import '../../utilities/navigation.css'
+  import NavBar from '../../components/+NavBar.svelte';
 </script>
 
-<div class="container">
-  <div class="box gray"></div>
-  <div class="box pink"></div>
-  <div class="box gray"></div>
-  <div class="box gray"></div>
-</div>
-<h1 class="title">CLIMATE CHANGE</h1>
+<main>
+  <NavBar title='CLIMATE CHANGE' slideNumber=1/>
+</main>
 
 <style>
   .title{
-  font-family: Druk;
+    font-family: Druk;
   }
 
 </style>

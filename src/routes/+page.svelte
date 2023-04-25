@@ -1,22 +1,15 @@
 <script>
-  import '../utilities/fonts.css'
-  import '../utilities/navigation.css'
+  import NavBar from '../components/+NavBar.svelte';
 </script>
 
-<div class="container">
-  <div class="box pink"></div>
-  <div class="box gray"></div>
-  <div class="box gray"></div>
-  <div class="box gray"></div>
-</div>
-
-<h1 class="title">CLIMATE CHANGE AND FOOD INSECURITY</h1>
-
+<main>
+  <NavBar title='CLIMATE CHANGE AND FOOD INSECURITY' slideNumber=0/>
+  <div>
+    yoo
+  </div>
+</main>
 
 <style>
-  .title{
-  font-family: Druk;
-  }
 
 
 </style>
