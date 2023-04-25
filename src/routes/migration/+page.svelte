@@ -20,8 +20,13 @@
 </div>
 <style>
   @font-face {
-  font-family: "Druk";
-  src: url('Druk-Wide-Bold.ttf'),
+  font-family: Druk;
+  src: 
+      url('./Druk-Wide-Bold.ttf') format('embedded-opentype'), /* Internet Explorer */
+      url('./Druk-Wide-Bold.ttf') format('woff2'),             /* Super Modern Browsers */
+      url('./Druk-Wide-Bold.ttf') format('woff'),              /* Pretty Modern Browsers */
+      url('./Druk-Wide-Bold.ttf') format('truetype'),          /* Safari, Android, iOS */
+      url('./Druk-Wide-Bold.ttf') format('svg');               /* Legacy iOS */
   }
 
   .chart {
@@ -29,7 +34,7 @@
   }
 
   .title{
-  font-family: "Druk";
+  font-family: Druk;
   }
 
   .vis {
