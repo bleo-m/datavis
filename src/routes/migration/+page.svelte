@@ -9,8 +9,14 @@
 
 <h1 class='title'> MIGRATION </h1>
 
-<div class="chart">
-  <Bars data={data}/>
+<div class="vis">
+  <div class="chart">
+    <Bars data={data}/>
+  </div>
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+</div>
 </div>
 <style>
   @font-face {
@@ -23,7 +29,12 @@
   }
 
   .title{
-  font-family: Druk;
+  font-family: "Druk";
+  }
+
+  .vis {
+    display: flex;
+    flex-direction: row;
   }
 
 </style>
