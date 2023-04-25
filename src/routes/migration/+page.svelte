@@ -2,12 +2,20 @@
     import * as d3 from 'd3';
   import { index } from 'd3';
   import { onMount } from 'svelte';
-  import '../fonts/fonts.css'
+  import '../../utilities/fonts.css'
+  import '../../utilities/navigation.css'
   import Bars from './bars.svelte';
   export let data;
   
 </script>
 
+
+<div class="container">
+  <div class="box gray"></div>
+  <div class="box gray"></div>
+  <div class="box gray"></div>
+  <div class="box pink"></div>
+</div>
 <h1 class='title'> MIGRATION </h1>
 
 <div class="vis">
