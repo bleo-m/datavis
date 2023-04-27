@@ -6,8 +6,7 @@
   import NavBar from '../../components/+NavBar.svelte';
 
   let direction = get(animationDetails).direction;  // get the previous direction from the store
-  // set animation direction to the opposite of the previous direction
-  let animationDirection = "In" + oppositeDirections[direction];
+  let animationDirection = "In" + direction;  // change to transitioning In on initializtion
 
   /**
    * Handles the navEvent from the NavArrow component
@@ -16,7 +15,7 @@
    const handleNavEvent = (e) => {
     direction = e.detail.direction;
     animationDetails.set({direction: direction});   // update the direction in the store
-    animationDirection = "Out" + direction; 
+    animationDirection = "Out" + oppositeDirections[direction]; // animate out in the opposite direction for parallax effect 
   }
 </script>
 

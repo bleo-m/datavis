@@ -1,7 +1,7 @@
 <script>
   import 'animate.css';
   import { get } from 'svelte/store';
-  import { animationDetails } from '../stores';
+  import { animationDetails, oppositeDirections } from '../stores';
   import NavBar from '../components/+NavBar.svelte';
   import NavArrow from '../components/NavArrow.svelte';
 
@@ -15,7 +15,7 @@
   const handleNavEvent = (e) => {
     direction = e.detail.direction;
     animationDetails.set({direction: direction});   // update the direction in the store
-    animationDirection = "Out" + direction; 
+    animationDirection = "Out" + oppositeDirections[direction];   // animate out in the opposite direction for parallax effect 
   }
 
 </script>
