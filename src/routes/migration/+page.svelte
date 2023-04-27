@@ -1,7 +1,10 @@
 <script>
-    import * as d3 from 'd3';
+  import * as d3 from 'd3';
   import { index } from 'd3';
   import { onMount } from 'svelte';
+  import 'animate.css';
+  import { get } from 'svelte/store';
+  import { animationDetails } from '../../stores';
   import NavBar from '../../components/+NavBar.svelte';
   import Bars from './bars.svelte';
   export let data;
