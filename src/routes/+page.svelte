@@ -4,6 +4,7 @@
   import { animationDetails, oppositeDirections } from '../stores';
   import NavBar from '../components/+NavBar.svelte';
   import NavArrow from '../components/NavArrow.svelte';
+  import PageSkeleton from '../components/PageSkeleton.svelte';
 
   let direction = get(animationDetails).direction;  // get the direction from the store
   let animationDirection = "In" + direction;   // change to transitioning In on initializtion
@@ -20,13 +21,11 @@
 
 </script>
 
-<main class={`animate__animated animate__fade${animationDirection}`} >
-  <NavBar title='CLIMATE CHANGE AND FOOD INSECURITY' slideNumber=0/>
+<PageSkeleton navigationPage1="climate" navigationDirection1="right" title="CLIMATE CHANGE AND FOOD INSECURITY" slideNumber=0>
   <div>
     yoo
-    <NavArrow page='/climate' direction="right" on:navEvent={handleNavEvent}/>
   </div>
-</main>
+</PageSkeleton>
 
 <style>
 
