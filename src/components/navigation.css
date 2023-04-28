@@ -1,11 +1,6 @@
 * {
   box-sizing: border-box;
   }
-  .navigation-container {
-    width: 5%;
-    height: auto;
-    display: block;
-  }
   .box {
     position: relative;
     float: left;

@@ -15,6 +15,12 @@
 </main>
 
 <style>
-
+:global(body) 
+{ /* this will apply to <body> */ 
+  margin: 0; 
+  padding: 0; 
+  height: 100%;
+  overflow: hidden;
+}
 </style>
 

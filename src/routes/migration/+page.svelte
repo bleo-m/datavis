@@ -3,26 +3,29 @@
   import { index } from 'd3';
   import { onMount } from 'svelte';
   import 'animate.css';
-  import { get } from 'svelte/store';
-  import { animationDetails } from '../../stores';
   import NavBar from '../../components/+NavBar.svelte';
   import Bars from './bars.svelte';
+  import PageSkeleton from '../../components/PageSkeleton.svelte';
+
   export let data;
   
 </script>
 
 <main>
-  <NavBar slideNumber=3/>
-
-  <div class="vis">
-    <div class="chart">
-      <Bars data={data}/>
+  <PageSkeleton
+    title="Migration"
+    navigationPage1="food"
+    navigationPage2="climate"
+    navigationDirection1="left"
+    navigationDirection2="up"
+    slideNumber={3}
+  >
+    <div class="vis">
+      <div class="chart">
+        <Bars data={data}/>
+      </div>
     </div>
-    <div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-    </div>
-  </div>
-
+  </PageSkeleton>
 </main>
 
 <style>

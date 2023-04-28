@@ -31,8 +31,9 @@
     * Animation library is kinda clapped with directions
     * so we gotta invert for up and down when initializing
     */
-    if (direction === "down" || direction === "up"){
-      animationDirection += oppositeDirections(direction);
+    console.log(direction);
+    if (direction === "Down" || direction === "Up"){
+      animationDirection += oppositeDirections[direction];
     }
     else{
       animationDirection += direction;
@@ -52,7 +53,17 @@
   
 
   <main class={`page-container animate__animated animate__fade${animationDirection}`} >
-    <NavBar title={title} slideNumber={slideNumber}/>
+    <NavBar title={title}/>
+
+    <div class="navigation-container">
+      {#each {length: 4} as _, i}
+        {#if i == slideNumber}
+          <div class="box pink"></div>
+        {:else}
+          <div class="box gray"></div>
+        {/if}
+      {/each}
+    </div>
     <div>
 
       <slot></slot>  
@@ -104,6 +115,15 @@
       top: 0px;
       transform: translate(-50%, 0%);
     }
+
+    .navigation-container {
+    width: 5%;
+    height: auto;
+    display: block;
+    position: absolute;
+    top: 24px;
+    left: 24px;
+  }
   
   </style>
   
