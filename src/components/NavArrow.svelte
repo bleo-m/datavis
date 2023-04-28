@@ -28,18 +28,25 @@
 
 <div>
     <button on:click={handleClick}>
-      <i class={`fas fa-chevron-${direction} fa-3x`}></i>
+      <i class={`fas fa-chevron-${direction} fa-4x`}></i>
     </button>
 </div>
 
 <style>
   button{
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
     text-decoration: none;
     color: black;
     background: none;
     border: none;
+    transition: color 0.5s ease;
   }
   button:hover{
     color: var(--red);
+    cursor: pointer;
+    transition: color 0.25s ease;
   }
 </style>

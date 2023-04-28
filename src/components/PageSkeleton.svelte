@@ -25,8 +25,19 @@
     import NavArrow from '../components/NavArrow.svelte';
 
     let direction = get(animationDetails).direction;  // get the direction from the store
-    let animationDirection = "In" + direction;   // change to transitioning In on initializtion
-  
+    let animationDirection = "In";   // change to transitioning In on initializtion
+
+    /**
+    * Animation library is kinda clapped with directions
+    * so we gotta invert for up and down when initializing
+    */
+    if (direction === "down" || direction === "up"){
+      animationDirection += oppositeDirections(direction);
+    }
+    else{
+      animationDirection += direction;
+    }
+
     /**
      * Handles the navEvent from the NavArrow component
      * @param e - the event
@@ -40,15 +51,18 @@
   </script>
   
 
-  <main class={`animate__animated animate__fade${animationDirection}`} >
+  <main class={`page-container animate__animated animate__fade${animationDirection}`} >
     <NavBar title={title} slideNumber={slideNumber}/>
     <div>
 
       <slot></slot>  
-      <NavArrow page={`/${navigationPage1}`} direction={navigationDirection1} on:navEvent={handleNavEvent}/>
-
+      <div class={`nav-arrow-${navigationDirection1}`}>
+        <NavArrow page={`/${navigationPage1}`} direction={navigationDirection1} on:navEvent={handleNavEvent}/>
+      </div>
       {#if navigationPage2 != undefined}
-        <NavArrow page={`/${navigationPage2}`} direction={navigationDirection2} on:navEvent={handleNavEvent}/>
+        <div class={`nav-arrow-${navigationDirection2}`}>
+          <NavArrow page={`/${navigationPage2}`} direction={navigationDirection2} on:navEvent={handleNavEvent}/>
+        </div>  
       {/if}
 
     </div>
@@ -56,6 +70,40 @@
   
 
   <style>
+    .page-container{
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      padding: 80px 160px;
+    }
+
+    .nav-arrow-right{
+      position: absolute;
+      top: 50%;
+      right: 0px;
+      transform: translate(0%, -50%);
+    }
+
+    .nav-arrow-left{
+      position: absolute;
+      top: 50%;
+      left: 0px;
+      transform: translate(0%, -50%);
+    }
+
+    .nav-arrow-down{
+      position: absolute;
+      left: 50%;
+      bottom: 0px;
+      transform: translate(-50%, 0%);
+    }
+
+    .nav-arrow-up{
+      position: absolute;
+      left: 50%;
+      top: 0px;
+      transform: translate(-50%, 0%);
+    }
   
   </style>
   

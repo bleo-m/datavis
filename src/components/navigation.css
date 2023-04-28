@@ -24,7 +24,8 @@
     background-color: var(--red);
   }
 
-  /* make the colors a variable so we can reuse them across the site easily */
-  :root {
-    --red: #FF5964;
-  }
+
+/* make the colors a variable so we can reuse them across the site easily */
+:root {
+  --red: #FF5964;
+}
