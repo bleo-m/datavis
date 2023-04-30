@@ -7,6 +7,6 @@ import * as d3 from 'd3';
 
 // import data into page.svelte somehow. Svelte has a weird architecture because it has a different coupling between server and client.
 export async function load({ params }) {
-    const csvData = await d3.csv('http://127.0.0.1:8080/src/routes/migration/main_table.csv');
+    const csvData = await d3.csv('https://gist.githubusercontent.com/bleo-m/9c41a5d7fb245e84aafd2b3ba19c68b9/raw/6f74fd01b37abf8bfcc6866d5f6c8fa6815ebeb5/main_table.csv');
     return {csv: csvData};
 }
