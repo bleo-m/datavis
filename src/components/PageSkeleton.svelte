@@ -20,6 +20,7 @@
 
     import 'animate.css';
     import { get } from 'svelte/store';
+    import {goto} from '$app/navigation';
     import { animationDetails, oppositeDirections } from '../stores';
     import NavBar from '../components/+NavBar.svelte';
     import NavArrow from '../components/NavArrow.svelte';
@@ -47,7 +48,9 @@
       animationDetails.set({direction: direction});   // update the direction in the store
       animationDirection = "Out" + oppositeDirections[direction];   // animate out in the opposite direction for parallax effect 
     }
-  
+
+
+    let pages = ["", "climate", "food", "migration"];
   </script>
   
 
