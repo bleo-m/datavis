@@ -31,7 +31,6 @@
     * Animation library is kinda clapped with directions
     * so we gotta invert for up and down when initializing
     */
-    console.log(direction);
     if (direction === "Down" || direction === "Up"){
       animationDirection += oppositeDirections[direction];
     }

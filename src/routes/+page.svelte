@@ -1,6 +1,7 @@
 <script>
   import 'animate.css';
   import PageSkeleton from '../components/PageSkeleton.svelte';
+  export let data;
 
 </script>
 

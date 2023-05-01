@@ -108,7 +108,6 @@ function Histogram(data, {
   onMount(()=>{
     let remitances = data.csv.map(entry => new Object({'responses': entry.remesa_efectivo_uso}));
     remitances = remitances.filter(entry => entry.responses !== "" && entry.responses !== '0');
-    console.log(remitances);
 
     chart = Histogram(remitances, {
     value: d => d.responses,
@@ -117,7 +116,6 @@ function Histogram(data, {
     color: "#FF5964"
     })
 
-    console.log(chart);
     container.appendChild(chart);
 
   })
