@@ -16,7 +16,6 @@ const getMainTableData = async () => {
  */
 export async function load() {
     let csvData = await getMainTableData();
-    console.log("hello");
     // if the store is empty, fetch the data from the remote csv file
     return {csv: csvData};
 }
