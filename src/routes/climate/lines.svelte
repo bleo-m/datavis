@@ -18,7 +18,7 @@
   } = {}) {
     const marginLeft = 40;
     const marginRight = 30;
-    const marginBottom = 30;
+    const marginBottom = 60;
     const marginTop = 20;
 
     //scale xAxis 
@@ -30,7 +30,7 @@
     var yMax = Math.max(yMax, d3.max(data, d => parseFloat(d.entry["3 Months Anomaly (%)"])));
     const yScale = d3.scaleLinear().domain([0, yMax]).range([height - marginBottom, marginTop]);
 
-    const xAxis = d3.axisBottom().scale(xScale);
+    const xAxis = d3.axisBottom().scale(xScale).tickValues([0, 36, 72]).tickFormat((d,i) => ['2021','2022','2023'][i]);;
     const yAxis = d3.axisLeft().scale(yScale);
 
     const svg = d3.create("svg")
@@ -64,21 +64,19 @@
             .attr("y", 27)
             .attr("fill", "currentColor")
             .attr("text-anchor", "end")
-            .text("Month"));
+            .text("Year"));
 
 
-    var hi = []; 
+    var normal = d3.line()
+    .x(function(d) { return xScale(d.entry["index"]); })
+    .y(function(d) { return yScale(100); });
+
     var oneMonth = d3.line()
-    // .interpolate("basis")
-    .x(function(d) { 
-      hi.push(d.entry["index"]);
-      
-      return xScale(d.entry["index"]); })
+    .x(function(d) { return xScale(d.entry["index"]); })
     .y(function(d) { return yScale(d.entry["1 Month Anomaly (%)"]); });
 
 
     var threeMonth = d3.line()
-    // .interpolate("basis")
     .x(function(d) { return xScale(d.entry["index"]); })
     .y(function(d) { return yScale(d.entry["3 Months Anomaly (%)"]); });
 
@@ -104,7 +102,46 @@
     .attr("stroke-width", 2)
     .attr("d", threeMonth(data));
 
-    console.log(hi);
+    svg.selectAll("path.path3")
+    .append("g")
+    .attr("class", "line")
+    .data(data)
+    .enter()
+    .append("path")
+    .attr("fill", "None")
+    .attr("stroke", "currentColor")
+    .attr("stroke-width", 2)
+    .attr("d", normal(data));
+
+    var keys = {"Normal":["currentColor", 100], "1 Month Anomaly":[color1,100], "3 Months Anomaly":[color2,125]}
+
+    // Usually you have a color scale in your chart already
+    var values = ["currentColor", color1, color2]
+
+// Add one dot in the legend for each name.
+  var size = 20
+  svg.selectAll("mydots")
+    .data(Object.keys(keys))
+    .enter()
+    .append("rect")
+    .attr("x", function(d, i) { return marginLeft + i*(size+keys[d][1])})
+    .attr("y", function(d){ return height - marginBottom / 3}) // 100 is where the first dot appears. 25 is the distance between dots
+    .attr("width", size)
+    .attr("height", size)
+    .style("fill", function(d){ return keys[d][0]})
+
+  // Add one dot in the legend for each name.
+  svg.selectAll("mylabels")
+    .data(Object.keys(keys))
+    .enter()
+    .append("text")
+      .attr("x", function(d, i) {return marginLeft + i*(size+keys[d][1]) + 1.2*(size)})
+      .attr("y", function(d,i){ return height - marginBottom / 7}) // 100 is where the first dot appears. 25 is the distance between dots
+      .style("fill", function(d){ return keys[d][0]})
+      .text(function(d){ return d})
+      .attr("text-anchor", "left")
+      .style("alignment-baseline", "middle")
+
 
     return svg.node();
 
