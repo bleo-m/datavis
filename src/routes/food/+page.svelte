@@ -5,7 +5,7 @@
 
 <main>
   <PageSkeleton
-    title="Food"
+    title="FOOD INSECURITY"
     navigationPage1=""
     navigationPage2="migration"
     navigationDirection1="up"

@@ -12,7 +12,7 @@
 
 <style>
   .navBar {
-    padding: 1vw 2vw;
+    /* padding: 1vw 2vw; */
     display: block;
     align-items: center;
     position: relative;

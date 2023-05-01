@@ -13,7 +13,7 @@
 
 <main>
   <PageSkeleton
-    title="Migration"
+    title="MIGRATION"
     navigationPage1="food"
     navigationPage2="climate"
     navigationDirection1="left"
