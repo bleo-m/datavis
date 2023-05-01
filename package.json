@@ -19,6 +19,7 @@
 	"type": "module",
 	"dependencies": {
 		"animate.css": "^4.1.1",
+		"csv-sort": "^7.0.8",
 		"d3": "^7.8.4",
 		"d3-collection": "^1.0.7",
 		"http-server": "^14.1.1",

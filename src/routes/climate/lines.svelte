@@ -22,10 +22,13 @@
     const marginTop = 20;
 
     //scale xAxis 
-    var xMax = d3.max(data, d => parseInt(d.entry["Month"]));
-    const xScale = d3.scaleLinear().domain([0, xMax]).range([marginLeft, width - marginRight]);
+    var xMin = d3.min(data, d => parseFloat(d.entry["index"]));
+    var xMax = d3.max(data, d => parseFloat(d.entry["index"]));
+    const xScale = d3.scaleLinear().domain([xMin, xMax]).range([marginLeft, width - marginRight]);
     //scale yAxis
-    const yScale = d3.scaleLinear().domain([20, 180]).range([height - marginBottom, marginTop]);
+    var yMax = d3.max(data, d => parseFloat(d.entry["1 Month Anomaly (%)"]));
+    var yMax = Math.max(yMax, d3.max(data, d => parseFloat(d.entry["3 Months Anomaly (%)"])));
+    const yScale = d3.scaleLinear().domain([0, yMax]).range([height - marginBottom, marginTop]);
 
     const xAxis = d3.axisBottom().scale(xScale);
     const yAxis = d3.axisLeft().scale(yScale);
@@ -63,14 +66,20 @@
             .attr("text-anchor", "end")
             .text("Month"));
 
+
+    var hi = []; 
     var oneMonth = d3.line()
     // .interpolate("basis")
-    .x(function(d) { return xScale(d.entry["Month"]); })
+    .x(function(d) { 
+      hi.push(d.entry["index"]);
+      
+      return xScale(d.entry["index"]); })
     .y(function(d) { return yScale(d.entry["1 Month Anomaly (%)"]); });
+
 
     var threeMonth = d3.line()
     // .interpolate("basis")
-    .x(function(d) { return xScale(d.entry["Month"]); })
+    .x(function(d) { return xScale(d.entry["index"]); })
     .y(function(d) { return yScale(d.entry["3 Months Anomaly (%)"]); });
 
     svg.selectAll("path.path1")
@@ -94,6 +103,8 @@
     .attr("stroke", color2)
     .attr("stroke-width", 2)
     .attr("d", threeMonth(data));
+
+    console.log(hi);
 
     return svg.node();
 
