@@ -15,10 +15,10 @@
   <PageSkeleton
     title="MIGRATION"
     navigationPage1="food"
-    navigationPage2="climate"
-    navigationDirection1="left"
+    navigationPage2=""
+    navigationDirection1="right"
     navigationDirection2="up"
-    slideNumber={3}
+    slideNumber={2}
   >
     <div class="vis">
       <div class="chart">

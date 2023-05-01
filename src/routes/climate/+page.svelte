@@ -7,7 +7,7 @@
 
 <main>
   <PageSkeleton 
-  navigationPage1="migration" navigationDirection1="down"
+  navigationPage1="food" navigationDirection1="down"
   navigationPage2="" navigationDirection2="left" 
   title='CLIMATE CHANGE' slideNumber=1>
   <div class="vis">

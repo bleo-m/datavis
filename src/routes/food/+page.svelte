@@ -6,11 +6,11 @@
 <main>
   <PageSkeleton
     title="FOOD INSECURITY"
-    navigationPage1=""
+    navigationPage1="climate"
     navigationPage2="migration"
     navigationDirection1="up"
-    navigationDirection2="right"
-    slideNumber={4} 
+    navigationDirection2="left"
+    slideNumber={3} 
   />
 </main>
 
