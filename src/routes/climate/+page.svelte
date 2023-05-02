@@ -12,6 +12,7 @@
   title='CLIMATE CHANGE' slideNumber=1>
   <div class="vis">
     <div class="chart">
+      <h3>Rainfall Anomalies</h3>
       <LineGraph data={data}/>
     </div>
   </div>
@@ -20,7 +21,7 @@
 
 <style>
   .chart {
-    margin: 10px
+    margin: 0;
   }
 
   .vis {
