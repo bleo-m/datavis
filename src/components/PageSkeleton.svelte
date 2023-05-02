@@ -49,8 +49,7 @@
       animationDirection = "Out" + oppositeDirections[direction];   // animate out in the opposite direction for parallax effect 
     }
 
-
-    let pages = ["", "climate", "food", "migration"];
+    let pages = ["/", "/climate", "/migration", "/food"];
   </script>
   
 
@@ -60,9 +59,9 @@
     <div class="navigation-container">
       {#each {length: 4} as _, i}
         {#if i == slideNumber}
-          <div class="box pink"></div>
+          <div class="box pink" onclick="location.href='{pages[i]}'"></div>
         {:else}
-          <div class="box gray"></div>
+          <div class="box gray" onclick="location.href='{pages[i]}'"></div>
         {/if}
       {/each}
     </div>
