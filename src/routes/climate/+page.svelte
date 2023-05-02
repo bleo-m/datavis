@@ -13,7 +13,7 @@
   <div class="vis">
     <div class="chart">
       <h3>Rainfall Anomalies</h3>
-      <LineGraph data={data}/>
+      <LineGraph bind:data={data}/>
     </div>
   </div>
   </PageSkeleton>
