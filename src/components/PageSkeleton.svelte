@@ -53,7 +53,7 @@
   </script>
   
 
-  <main class={`page-container animate__animated animate__fade${animationDirection}`} >
+  <main class={`page-container animate__animated animate__faster animate__fade${animationDirection}`} >
     <NavBar title={title}/>
 
     <div class="navigation-container">

@@ -21,7 +21,7 @@
     // wait for the animation to finish before navigating
     setTimeout(() => {
       goto(page);
-    }, 100);
+    }, 300);
   }
 
 </script>
