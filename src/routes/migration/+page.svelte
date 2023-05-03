@@ -20,9 +20,12 @@
     navigationDirection2="up"
     slideNumber={2}
   >
-    <div class="vis">
-      <div class="chart">
+    <div class="info-container">
+      <div id="migration-graph-container" class="chart">
         <BubbleGraph data={data}/>
+      </div>
+      <div>
+        hehe look at me I am a text
       </div>
     </div>
   </PageSkeleton>
@@ -30,12 +33,14 @@
 
 <style>
   .chart {
-    margin: 10px
+    margin: 10px;
+    width: 65%;
   }
 
-  .vis {
+  .info-container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
   }
 
 </style>

@@ -12,12 +12,24 @@
   // const LEGEND_SIZE = 20;
   let graphWidth = 1000;
   let graphHeight = 500;
+
   const paddings = {
     top: 20,
     left: 20,
     right: 30,
-    bottom: 60
+    bottom: 10
   };
+
+  onMount(() => {
+    /**
+     * Make graph height / width the size of the content element for the page
+     */
+    let pageContent = document.getElementById('migration-graph-container');
+    graphWidth = pageContent.getBoundingClientRect().width - paddings.left - paddings.right;
+    graphHeight = pageContent.getBoundingClientRect().height - paddings.top - paddings.bottom;
+    console.log(graphWidth);
+  });
+
 
   // // Scaling
   // const yMax1 = Math.max(...data.csv.map((d) => d["1 Month Anomaly (%)"]));
@@ -100,7 +112,7 @@
               cy={yScale(j)}
               r="10"
               stroke="black"
-              fill="white"
+              fill="var(--white)"
             />
         {/each}
       {/each}

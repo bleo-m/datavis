@@ -1,6 +1,7 @@
 <script>
   import * as d3 from 'd3';
   import { scaleLinear } from "d3-scale";
+  import { onMount } from 'svelte';
   export let data = [];
 
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
