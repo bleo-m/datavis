@@ -28,15 +28,6 @@
   height: 100%;
   justify-content: space-between;
 }
-:global(html, body) 
-{ /* this will apply to <body> */ 
-  margin: 0; 
-  padding: 0; 
-  height: 100%;
-  overflow: hidden;
-  color: var(--black);
-  background-color: var(--white);
-}
 
 img{
   filter: grayscale(100%);

@@ -131,6 +131,15 @@
     font-family: Arial, Helvetica, sans-serif;
   }
   
+    :global(html, body) 
+  { /* this will apply to <body> */ 
+    margin: 0; 
+    padding: 0; 
+    height: 100%;
+    overflow: hidden;
+    color: var(--black);
+    background-color: var(--white);
+  }
   </style>
   
   
