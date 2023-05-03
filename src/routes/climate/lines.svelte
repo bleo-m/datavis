@@ -261,12 +261,16 @@
     /* font: 25px sans-serif; */
     /* font-family: "Nunito", sans-serif; */
     visibility: visible;
-    background-color: #dcd9d0;
-    border-radius: 10px;
+    /* make blurry transparent background */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
     width: 225px;
-    color: black;
+    color: var(--black);
     position: absolute;
     padding: 10px;
+    /* drop shadow */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.10);
   }
 
   .info-container {
