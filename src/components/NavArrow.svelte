@@ -39,7 +39,7 @@
     text-align: center;
     vertical-align: middle;
     text-decoration: none;
-    color: black;
+    color: var(--black);
     background: none;
     border: none;
     transition: color 0.5s ease;

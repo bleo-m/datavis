@@ -1,12 +1,20 @@
 <script>
   import * as d3 from 'd3';
   import { scaleLinear } from "d3-scale";
+  import { onMount } from 'svelte';
+
+  let graphWidth = 1000;
+
+  onMount(() => {
+    let pageContent = document.getElementById('page-content');
+    graphWidth = pageContent.getBoundingClientRect().width;
+  });
+
   export let data = [];
 
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
   const LEGEND_SIZE = 20;
-  let graphWidth = 1000;
   let graphHeight = 300;
   const paddings = {
     top: 20,
@@ -248,7 +256,7 @@
     background-color: #dcd9d0;
     border-radius: 10px;
     width: 225px;
-    color: black;
+    color: var(--black);
     position: absolute;
     padding: 10px;
   }

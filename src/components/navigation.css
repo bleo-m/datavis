@@ -1,6 +1,8 @@
 * {
   box-sizing: border-box;
   }
+
+
   .box {
     position: relative;
     float: left;
@@ -25,12 +27,12 @@
   .pink {
     box-shadow: inset 0 0 0 1px var(--red);
     background-color: var(--red);
-  }
-
-  
+  }  
 
 
 /* make the colors a variable so we can reuse them across the site easily */
 :root {
   --red: #FF5964;
+  --black: #212427;
+  --white: #f0ebeb;
 }

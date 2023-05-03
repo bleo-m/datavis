@@ -6,7 +6,7 @@
 
 <main class="navBar">
   {#if title != undefined}
-    <h1 class="right title">{title}</h1>
+    <h1 class="title">{title}</h1>
   {/if}
 </main>
 
@@ -20,13 +20,14 @@
   .right {
     display: inline-block;
     margin-top: 1vw;
+    
   }
 
   .title{
     font-family: Druk;
-  }
-
-  h1{
-    font-size: 80px;
+    font-size: 64px;
+    margin-top: 0px;
+    margin-bottom: 4px;
+    color: var(--black);
   }
 </style>

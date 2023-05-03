@@ -64,7 +64,7 @@
         {/if}
       {/each}
     </div>
-    <div class="page-content-wrapper">
+    <div id="page-content" class="page-content-wrapper">
       <slot></slot>  
     </div>
     <div class={`nav-arrow-${navigationDirection1}`}>
