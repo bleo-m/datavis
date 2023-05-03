@@ -25,4 +25,8 @@
   .title{
     font-family: Druk;
   }
+
+  h1{
+    font-size: 80px;
+  }
 </style>

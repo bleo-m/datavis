@@ -13,7 +13,7 @@
 </main>
 
 <style>
-:global(body) 
+:global(html, body) 
 { /* this will apply to <body> */ 
   margin: 0; 
   padding: 0; 

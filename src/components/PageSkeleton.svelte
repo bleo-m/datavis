@@ -53,9 +53,8 @@
   </script>
   
 
-  <main class={`page-container animate__animated animate__faster animate__bounce${animationDirection}`} >
-    <NavBar title={title}/>
-
+  <main class={`page-container animate__animated animate__faster animate__fade${animationDirection}`} >
+     <NavBar title={title}/>
     <div class="navigation-container">
       {#each {length: 4} as _, i}
         {#if i == slideNumber}
@@ -65,28 +64,28 @@
         {/if}
       {/each}
     </div>
-    <div>
-
+    <div class="page-content-wrapper">
       <slot></slot>  
-      <div class={`nav-arrow-${navigationDirection1}`}>
-        <NavArrow page={`/${navigationPage1}`} direction={navigationDirection1} on:navEvent={handleNavEvent}/>
-      </div>
-      {#if navigationPage2 != undefined}
-        <div class={`nav-arrow-${navigationDirection2}`}>
-          <NavArrow page={`/${navigationPage2}`} direction={navigationDirection2} on:navEvent={handleNavEvent}/>
-        </div>  
-      {/if}
-
     </div>
+    <div class={`nav-arrow-${navigationDirection1}`}>
+      <NavArrow page={`/${navigationPage1}`} direction={navigationDirection1} on:navEvent={handleNavEvent}/>
+    </div>
+    {#if navigationPage2 != undefined}
+      <div class={`nav-arrow-${navigationDirection2}`}>
+        <NavArrow page={`/${navigationPage2}`} direction={navigationDirection2} on:navEvent={handleNavEvent}/>
+      </div>  
+    {/if}
   </main>
   
 
   <style>
     .page-container{
       position: relative;
+      display: flex;
+      flex-direction: column;
       width: 100%;
       height: 100vh;
-      padding: 80px 160px;
+      padding: 90px 180px;
     }
 
     .nav-arrow-right{
@@ -124,6 +123,12 @@
     position: absolute;
     top: 24px;
     left: 24px;
+  }
+
+  .page-content-wrapper{
+    overflow-y: auto;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   </style>
