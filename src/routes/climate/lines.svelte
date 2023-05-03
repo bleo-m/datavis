@@ -44,9 +44,11 @@
 
   // Hover Effects
   const idContainer = "svg-container-" + Math.random() * 1000000;
+
+  // typically null is unreliable in javascript, try using underfined instead
   let mousePosition = { x: null, y: null };
   let pageMousePosition = { x: null, y: null };
-  let currentHoveredPoint = null;
+  let currentHoveredPoint = undefined;
 
   function followMouse(event) {
     const svg = document.getElementById(idContainer);
@@ -74,8 +76,15 @@
   }
 
   function computeSelectedXValue(value) {
-    currentHoveredPoint = data.csv[data.csv.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 2];
-    return data.csv.filter((d) => xScale(d.index) >= value)[0].index - 1;
+    console.log(currentHoveredPoint);
+    try{
+      currentHoveredPoint = data.csv[data.csv.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 2];
+      return data.csv.filter((d) => xScale(d.index) >= value)[0].index - 1;
+    }
+    catch {
+      currentHoveredPoint = data.csv[data.csv.length - 1];
+      return data.csv.length - 1;
+    }
   }
 
 </script>
@@ -194,7 +203,7 @@
     class={mousePosition.x === null ? "tooltip-hidden" : "tooltip-visible"}
     style="left: {pageMousePosition.x + 10}px; top: {pageMousePosition.y + 10}px"
   >
-    {#if mousePosition.x !== null}
+    {#if mousePosition.x !== null && currentHoveredPoint !== undefined}
       <b>Dekad {currentHoveredPoint["Dekad"]} of {MONTHS[parseInt(currentHoveredPoint["Month"])-1]} {currentHoveredPoint["Year"]}</b> <br>
       <div class="info-container">
         <div class="info-box1"></div>
