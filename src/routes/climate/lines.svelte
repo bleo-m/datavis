@@ -7,6 +7,12 @@
   const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
   const LEGEND_SIZE = 20;
   let graphWidth = 1000;
+
+  onMount(() => {
+    let pageContent = document.getElementById('page-content');
+    graphWidth = pageContent.getBoundingClientRect().width;
+  });
+
   let graphHeight = 300;
   const paddings = {
     top: 20,
