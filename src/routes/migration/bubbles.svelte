@@ -1,88 +1,113 @@
 <script>
   import * as d3 from 'd3';
   import { scaleLinear } from "d3-scale";
-  export let data = [];
+  import { onMount } from 'svelte';
 
-  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
-  const LEGEND_SIZE = 20;
+  export let data = [];
+  data = data["data"];
+
+  // const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
+  let years = [];
+  for (let i=1960; i<2022; i=i+1) { years.push(i); }  // Skewchums Idee?
+  // const LEGEND_SIZE = 20;
   let graphWidth = 1000;
-  let graphHeight = 300;
+  let graphHeight = 500;
   const paddings = {
     top: 20,
-    left: 40,
+    left: 20,
     right: 30,
     bottom: 60
   };
 
-  // Scaling
-  const yMax1 = Math.max(...data.csv.map((d) => d["1 Month Anomaly (%)"]));
-  const yMax2 = Math.max(...data.csv.map((d) => d["3 Months Anomaly (%)"]));
+  // // Scaling
+  // const yMax1 = Math.max(...data.csv.map((d) => d["1 Month Anomaly (%)"]));
+  // const yMax2 = Math.max(...data.csv.map((d) => d["3 Months Anomaly (%)"]));
   $: xScale = scaleLinear()
-              .domain([0, data.csv.length])
+              .domain([0, 10])
               .range([paddings.left, graphWidth - paddings.right])
 
   $: yScale = scaleLinear()
-              .domain([0, Math.max(yMax1, yMax2)])
+              .domain([0, 10])
               .range([graphHeight - paddings.bottom, paddings.top])
 
-  // Tick Marks
-  let xTicks = {0:2021, 36:2022, 72:2023};
-  let yTicks = [];
-  $: {
-    for (let i=0; i<Math.round(Math.max(yMax1, yMax2))+1; i=i+20) {
-      yTicks.push(i);
-    }
-  }
+  // // Tick Marks
+  // let xTicks = {0:2021, 36:2022, 72:2023};
+  // let yTicks = [];
+  // $: {
+  //   for (let i=0; i<Math.round(Math.max(yMax1, yMax2))+1; i=i+20) {
+  //     yTicks.push(i);
+  //   }
+  // }
 
-  // Hover Effects
-  const idContainer = "svg-container-" + Math.random() * 1000000;
-  let mousePosition = { x: null, y: null };
-  let pageMousePosition = { x: null, y: null };
-  let currentHoveredPoint = null;
+  // // Hover Effects
+  // const idContainer = "svg-container-" + Math.random() * 1000000;
+  // let mousePosition = { x: null, y: null };
+  // let pageMousePosition = { x: null, y: null };
+  // let currentHoveredPoint = null;
 
-  function followMouse(event) {
-    const svg = document.getElementById(idContainer);
-    if (svg === null) return;
-    const dim = svg.getBoundingClientRect();
-    pageMousePosition = {
-      x: event.pageX,
-      y: event.pageY,
-    };
-    const positionInSVG = {
-      x: event.clientX - dim.left,
-      y: event.clientY - dim.top,
-    };
-    mousePosition =
-      positionInSVG.x > paddings.left &&
-      positionInSVG.x < graphWidth - paddings.right &&
-      positionInSVG.y > paddings.top &&
-      positionInSVG.y < graphHeight - paddings.bottom
-        ? { x: positionInSVG.x, y: positionInSVG.y }
-        : { x: null, y: null };
-  }
+  // function followMouse(event) {
+  //   const svg = document.getElementById(idContainer);
+  //   if (svg === null) return;
+  //   const dim = svg.getBoundingClientRect();
+  //   pageMousePosition = {
+  //     x: event.pageX,
+  //     y: event.pageY,
+  //   };
+  //   const positionInSVG = {
+  //     x: event.clientX - dim.left,
+  //     y: event.clientY - dim.top,
+  //   };
+  //   mousePosition =
+  //     positionInSVG.x > paddings.left &&
+  //     positionInSVG.x < graphWidth - paddings.right &&
+  //     positionInSVG.y > paddings.top &&
+  //     positionInSVG.y < graphHeight - paddings.bottom
+  //       ? { x: positionInSVG.x, y: positionInSVG.y }
+  //       : { x: null, y: null };
+  // }
 
-  function removePointer() {
-    mousePosition = { x: null, y: null };
-  }
+  // function removePointer() {
+  //   mousePosition = { x: null, y: null };
+  // }
 
-  function computeSelectedXValue(value) {
-    currentHoveredPoint = data.csv[data.csv.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 2];
-    return data.csv.filter((d) => xScale(d.index) >= value)[0].index - 1;
-  }
+  // function computeSelectedXValue(value) {
+  //   currentHoveredPoint = data.csv[data.csv.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 2];
+  //   return data.csv.filter((d) => xScale(d.index) >= value)[0].index - 1;
+  // }
+  
+
+  console.log(data);
 
 </script>
 
 <div class="visualization">
-  <svg
+  <!-- <svg
     width={graphWidth}
     height={graphHeight}
     on:mousemove={followMouse}
     on:mouseleave={removePointer}
     id={idContainer}
+  > -->
+  <svg
+    width={graphWidth}
+    height={graphHeight}
   >
-    <!-- X and Y axis -->
     <g>
+      {#each years as y, j}
+        {#each years as x, i}
+            <circle
+              cx={xScale(i)}
+              cy={yScale(j)}
+              r="10"
+              stroke="black"
+              fill="white"
+            />
+        {/each}
+      {/each}
+    </g>
+  </svg>
+    <!-- X and Y axis -->
+    <!-- <g>
       <line
         x1={paddings.left}
         x2={graphWidth - paddings.right}
@@ -99,9 +124,9 @@
         stroke="#000000"
         stroke-width="1"
       />
-    </g>
+    </g> -->
     <!-- Normal, 1 Month and 3 Months Anomaly Lines -->
-    <line
+    <!-- <line
       x1={paddings.left}
       x2={graphWidth - paddings.right}
       y1={yScale(100)}
@@ -130,9 +155,9 @@
           />
         {/if}
       {/each}
-    </g>
+    </g> -->
     <!-- Ticks on Axis -->
-    <g transform="translate(0, {graphHeight - paddings.bottom})">
+    <!-- <g transform="translate(0, {graphHeight - paddings.bottom})">
       {#each Object.keys(xTicks) as x}
         <g
           class="tick"
@@ -181,9 +206,9 @@
         />
       </g>
     {/if}
-  </svg>
+  </svg> -->
   <!-- Information when Hovering -->
-  <div
+  <!-- <div
     class={mousePosition.x === null ? "tooltip-hidden" : "tooltip-visible"}
     style="left: {pageMousePosition.x + 10}px; top: {pageMousePosition.y + 10}px"
   >
@@ -198,9 +223,9 @@
         <div>&nbsp 3 Months Anomaly  <b>{parseInt(currentHoveredPoint["3 Months Anomaly (%)"])}%</b> </div>
       </div>
     {/if}
-  </div>
+  </div> -->
   <!-- Legend -->
-  <div>
+  <!-- <div>
     <svg
       width={graphWidth}
       height={LEGEND_SIZE}
@@ -223,7 +248,7 @@
         {/each}
       </g>
     </svg>
-  </div>
+  </div> -->
 </div>
 
 <style>
@@ -248,7 +273,7 @@
     background-color: #dcd9d0;
     border-radius: 10px;
     width: 225px;
-    color: black;
+    color: var(--black);
     position: absolute;
     padding: 10px;
   }

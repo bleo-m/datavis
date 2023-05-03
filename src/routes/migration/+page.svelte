@@ -4,7 +4,7 @@
   import { onMount } from 'svelte';
   import 'animate.css';
   import NavBar from '../../components/+NavBar.svelte';
-  import Bars from './bars.svelte';
+  import BubbleGraph from './bubbles.svelte';
   import PageSkeleton from '../../components/PageSkeleton.svelte';
 
   export let data;
@@ -22,7 +22,7 @@
   >
     <div class="vis">
       <div class="chart">
-        <Bars data={data}/>
+        <BubbleGraph data={data}/>
       </div>
     </div>
   </PageSkeleton>
