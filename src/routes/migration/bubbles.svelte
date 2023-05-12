@@ -2,13 +2,17 @@
   import * as d3 from 'd3';
   import { scaleLinear } from "d3-scale";
   import { onMount } from 'svelte';
+  import Slider from './slider.svelte';
 
   export let data = [];
   data = data["data"];
 
+  let slider_year = 1960;
+  let theme = "default";
+
   // const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
   let years = [];
-  for (let i=1960; i<2022; i=i+1) { years.push(i); }  // Skewchums Idee?
+  for (let i=1960; i<2022; i=i+1) { years.push(i); }
   // const LEGEND_SIZE = 20;
   let graphWidth = 1000;
   let graphHeight = 500;
@@ -118,6 +122,10 @@
       {/each}
     </g>
   </svg>
+  <div class:purple-theme={theme === "purple"}>
+    <h3>Year: {slider_year}</h3>
+    <Slider on:change={(e) => slider_year = e.detail.value} id="basic-slider" />
+  </div>
     <!-- X and Y axis -->
     <!-- <g>
       <line
