@@ -8,11 +8,13 @@
   data = data["data"];
 
   let slider_year = 1960;
-  let theme = "default";
 
   // const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
+  let countries = ["Honduras", "El Salvador", "Nicaragua"];
   let years = [];
-  for (let i=1960; i<2022; i=i+1) { years.push(i); }
+  for (let i=1960; i<2022; i=i+1) { 
+    years.push(i); 
+  }
   // const LEGEND_SIZE = 20;
   let graphWidth = 1000;
   let graphHeight = 500;
@@ -31,9 +33,16 @@
     let pageContent = document.getElementById('migration-graph-container');
     graphWidth = pageContent.getBoundingClientRect().width - paddings.left - paddings.right;
     graphHeight = pageContent.getBoundingClientRect().height - paddings.top - paddings.bottom;
-    console.log(graphWidth);
   });
 
+  let parsed_data = new Object();
+  for (let i=1960; i<2022; i=i+1) {
+    let running_sum = 0;
+    for (let j=0; j<data.length; j=j+1) {
+      running_sum += parseInt(data[j][i]);
+    }
+    parsed_data[i] = running_sum / 3;
+  }
 
   // // Scaling
   // const yMax1 = Math.max(...data.csv.map((d) => d["1 Month Anomaly (%)"]));
@@ -45,6 +54,7 @@
   $: yScale = scaleLinear()
               .domain([0, 10])
               .range([graphHeight - paddings.bottom, paddings.top])
+
 
   // // Tick Marks
   // let xTicks = {0:2021, 36:2022, 72:2023};
@@ -91,9 +101,6 @@
   //   return data.csv.filter((d) => xScale(d.index) >= value)[0].index - 1;
   // }
   
-
-  console.log(data);
-
 </script>
 
 <div class="visualization">
@@ -122,7 +129,7 @@
       {/each}
     </g>
   </svg>
-  <div class:purple-theme={theme === "purple"}>
+  <div class="slider-theme">
     <h3>Year: {slider_year}</h3>
     <Slider on:change={(e) => slider_year = e.detail.value} id="basic-slider" />
   </div>
@@ -279,43 +286,13 @@
     text-align: middle;
   }
 
-  .tooltip-hidden {
-    visibility: hidden;
-    /* font-family: "Nunito", sans-serif; */
-    width: 225px;
-    position: absolute;
-  }
-
-  .tooltip-visible {
-    /* font: 25px sans-serif; */
-    /* font-family: "Nunito", sans-serif; */
-    visibility: visible;
-    background-color: #dcd9d0;
-    border-radius: 10px;
-    width: 225px;
-    color: var(--black);
-    position: absolute;
-    padding: 10px;
-  }
-
-  .info-container {
-    display:flex;
-  }
-
-  .info-box1 {
-    width: 7.5%;
-    background-color: #FF5964;
-    display: block;
-    padding-top: 7.5%;
-    margin-bottom: 1%;
-  }
-
-  .info-box2 {
-    width: 7.5%;
-    background-color: #6CA3CF;
-    display: block;
-    padding-top: 7.5%;
-    margin-top: 1%;
-  }
+  .slider-theme {
+		--track-focus: #FF5964;
+		--track-highlight-bgcolor: #FF5964;
+		--track-highlight-bg: linear-gradient(90deg, #FF5964, #6CA3CF);
+		--thumb-holding-outline: rgba(255, 89, 100, 0.3);
+		--tooltip-bgcolor: #FF5964;
+		--tooltip-bg: linear-gradient(45deg, #FF5964, #6CA3CF);
+	}
 
 </style>
