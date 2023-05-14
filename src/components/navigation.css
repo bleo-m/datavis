@@ -15,12 +15,24 @@
   .box:hover {
     cursor: pointer;
   }
-  .gray  {
+  .gray-black, .gray-pink, .gray-yellow, .gray-blue {
     box-shadow: inset 0 0 0 1px #D2D2D2;
     background-color: #D2D2D2;
   }
-  .gray:hover {
-    background-color: #ffb0b4;
+  .gray-black:hover {
+    background-color: rgba(33,36,39,0.5);
+    transition: background-color 0.25s ease;
+  }
+  .gray-pink:hover{
+    background-color: rgba(255,89,100,0.5);
+    transition: background-color 0.25s ease;
+  }
+  .gray-yellow:hover{
+    background-color: rgba(251,255,18,0.25);
+    transition: background-color 0.25s ease;
+  }
+  .gray-blue:hover{
+    background-color: rgba(53,167,255,0.5);
     transition: background-color 0.25s ease;
   }
 
@@ -28,13 +40,26 @@
     box-shadow: inset 0 0 0 1px var(--red);
     background-color: var(--red);
   }  
+  .yellow {
+    box-shadow: inset 0 0 0 1px var(--yellow);
+    background-color: var(--yellow);
+  }
+  .blue {
+    box-shadow: inset 0 0 0 1px var(--blue);
+    background-color: var(--blue);
+  }
+  .black {
+    box-shadow: inset 0 0 0 1px var(--black);
+    background-color: var(--black);
+  }
 
 
 /* make the colors a variable so we can reuse them across the site easily */
 :root {
   --red: #FF5964;
-  --blue: #6CA3CF;
+  --blue: #35A7FF;
   --black: #212427;
   --white: whitesmoke;
   --gray: rgba(128, 128, 128, 0.25);
+  --yellow: #FBFF12;
 }

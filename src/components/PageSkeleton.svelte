@@ -50,6 +50,7 @@
     }
 
     let pages = ["/", "/climate", "/migration", "/food"];
+    let pageColors = ["black", "pink", "blue", "yellow"];
   </script>
   
 
@@ -58,9 +59,9 @@
     <div class="navigation-container">
       {#each {length: 4} as _, i}
         {#if i == slideNumber}
-          <div class="box pink" onclick="location.href='{pages[i]}'"></div>
+          <div class="box {pageColors[i]}" onclick="location.href='{pages[i]}'"></div>
         {:else}
-          <div class="box gray" onclick="location.href='{pages[i]}'"></div>
+          <div class="box gray-{pageColors[i]}" onclick="location.href='{pages[i]}'"></div>
         {/if}
       {/each}
     </div>

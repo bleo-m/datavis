@@ -56,7 +56,6 @@
   const idContainer = "svg-container-" + Math.random() * 1000000;
   let mousePosition = { x: null, y: null };
   let pageMousePosition = { x: null, y: null };
-  let currentHoveredPoint = null;
 
   function followMouse(event) {
     const svg = document.getElementById(idContainer);
