@@ -30,9 +30,6 @@
   let onDragEnd;
 
   onMount(() => {
-    /**
-     * Make graph height / width the size of the content element for the page
-     */
     mouseEventShield = document.createElement("div");
     mouseEventShield.setAttribute("class", "mouse-over-shield");
     mouseEventShield.addEventListener("mouseover", (e) => {
@@ -58,17 +55,9 @@
   }
     
   });
+
   // Dispatch 'change' events
   const dispatch = createEventDispatcher();
-
-  // Mouse shield used onMouseDown to prevent any mouse events penetrating other elements,
-  // ie. hover events on other elements while dragging. Especially for Safari
-  // const mouseEventShield = document.createElement("div");
-  // mouseEventShield.setAttribute("class", "mouse-over-shield");
-  // mouseEventShield.addEventListener("mouseover", (e) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  // });
 
   function resizeWindow() {
     elementX = element.getBoundingClientRect().left;
@@ -90,23 +79,6 @@
   function onHover(e) {
     thumbHover = thumbHover ? false : true;
   }
-
-  // function onDragStart(e) {
-  //   // If mouse event add a pointer events shield
-  //   if (e.type === "mousedown") document.body.append(mouseEventShield);
-  //   currentThumb = thumb;
-  // }
-
-  // function onDragEnd(e) {
-  //   // If using mouse - remove pointer event shield
-  //   if (e.type === "mouseup") {
-  //     if (document.body.contains(mouseEventShield))
-  //       document.body.removeChild(mouseEventShield);
-  //     // Needed to check whether thumb and mouse overlap after shield removed
-  //     if (isMouseInElement(e, thumb)) thumbHover = true;
-  //   }
-  //   currentThumb = null;
-  // }
 
   // Check if mouse event cords overlay with an element's area
   function isMouseInElement(event, element) {
@@ -184,14 +156,12 @@
 
   // Update progressbar and thumb styles to represent value
   $: if (progressBar && thumb) {
-    // Limit value min -> max
     value = value > min ? value : min;
     value = value < max ? value : max;
 
     let percent = ((value - min) * 100) / (max - min);
     let offsetLeft = (container.clientWidth - 10) * (percent / 100) + 5;
 
-    // Update thumb position + active range track width
     thumb.style.left = `${offsetLeft}px`;
     progressBar.style.width = `${offsetLeft}px`;
   }
@@ -276,7 +246,7 @@
   }
 
   .slider__wrapper:focus-visible > .slider__track {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px var(--track-focus, #6185ff);
+    box-shadow: 0 0 0 2px var(--white), 0 0 0 3px var(--track-focus, var(--blue));
   }
 
   .slider__track {
@@ -286,10 +256,10 @@
   }
 
   .slider__track--highlighted {
-    background-color: var(--track-highlight-bgcolor, #6185ff);
+    background-color: var(--track-highlight-bgcolor, var(--blue));
     background: var(
       --track-highlight-bg,
-      linear-gradient(90deg, #6185ff, #9c65ff)
+      linear-gradient(90deg, var(--blue), var(--red))
     );
     width: 0;
     height: 6px;
@@ -304,7 +274,7 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: var(--thumb-bgcolor, white);
+    background-color: var(--thumb-bgcolor, var(--white));
     cursor: pointer;
     border-radius: 999px;
     margin-top: -8px;
@@ -327,13 +297,13 @@
     pointer-events: none;
     position: absolute;
     top: -33px;
-    color: var(--tooltip-text, white);
+    color: var(--tooltip-text, var(--white));
     width: 38px;
     padding: 4px 0;
     border-radius: 4px;
     text-align: center;
-    background-color: var(--tooltip-bgcolor, #6185ff);
-    background: var(--tooltip-bg, linear-gradient(45deg, #6185ff, #9c65ff));
+    background-color: var(--tooltip-bgcolor, var(--blue));
+    background: var(--tooltip-bg, linear-gradient(45deg, var(--blue), var(--red)));
   }
 
   .slider__tooltip::after {
@@ -342,7 +312,7 @@
     position: absolute;
     height: 7px;
     width: 7px;
-    background-color: var(--tooltip-bgcolor, #6185ff);
+    background-color: var(--tooltip-bgcolor, var(--blue));
     bottom: -3px;
     left: calc(50% - 3px);
     clip-path: polygon(0% 0%, 100% 100%, 0% 100%);

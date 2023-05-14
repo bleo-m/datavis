@@ -8,12 +8,6 @@
   const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
   const LEGEND_SIZE = 20;
   let graphWidth = 1000;
-
-  onMount(() => {
-    let pageContent = document.getElementById('page-content');
-    graphWidth = pageContent.getBoundingClientRect().width;
-  });
-
   let graphHeight = 300;
   const paddings = {
     top: 20,
@@ -21,6 +15,11 @@
     right: 30,
     bottom: 60
   };
+
+  onMount(() => {
+    let pageContent = document.getElementById('page-content');
+    graphWidth = pageContent.getBoundingClientRect().width - paddings.left - paddings.right;
+  });
 
   // Scaling
   const yMax1 = Math.max(...data.csv.map((d) => d["1 Month Anomaly (%)"]));
@@ -76,9 +75,8 @@
   }
 
   function computeSelectedXValue(value) {
-    console.log(currentHoveredPoint);
     try{
-      currentHoveredPoint = data.csv[data.csv.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 2];
+      currentHoveredPoint = data.csv[data.csv.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 1];
       return data.csv.filter((d) => xScale(d.index) >= value)[0].index - 1;
     }
     catch {
@@ -101,7 +99,7 @@
     <g>
       <line
         x1={paddings.left}
-        x2={graphWidth - paddings.right}
+        x2={graphWidth - paddings.right - 10}
         y1={graphHeight - paddings.bottom}
         y2={graphHeight - paddings.bottom}
         stroke="var(--black)"
@@ -161,7 +159,7 @@
           </text>
         </g>
       {/each}
-      <text x="{graphWidth - paddings.right}" y="5">Year</text>
+      <text x="{graphWidth - paddings.right - 10}" y="5">Year</text>
     </g>
     <g transform="translate({paddings.left}, 0)">
       {#each yTicks as y}
@@ -279,7 +277,7 @@
 
   .info-box1 {
     width: 7.5%;
-    background-color: --var(red);
+    background-color: var(--red);
     display: block;
     padding-top: 7.5%;
     margin-bottom: 1%;
@@ -287,7 +285,7 @@
 
   .info-box2 {
     width: 7.5%;
-    background-color: --var(blue);
+    background-color: var(--blue);
     display: block;
     padding-top: 7.5%;
     margin-top: 1%;

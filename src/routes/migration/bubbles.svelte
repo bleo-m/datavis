@@ -9,8 +9,6 @@
 
   let slider_year = 1960;
 
-  // const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
-  // let countries = ["Honduras", "El Salvador", "Nicaragua"];
   let years = [];
   for (let i=1960; i<2022; i=i+1) { 
     years.push(i); 
@@ -44,7 +42,7 @@
     parsed_data[i] = running_sum / 3;
   }
 
-  // // Scaling
+  // Scaling
   let numCircles = [...Array(10).keys()];
   $: xScale = scaleLinear()
               .domain([0, 9])
@@ -84,22 +82,10 @@
   function removePointer() {
     mousePosition = { x: null, y: null };
   }
-
-  // function computeSelectedXValue(value) {
-  //   currentHoveredPoint = data.csv[data.csv.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 2];
-  //   return data.csv.filter((d) => xScale(d.index) >= value)[0].index - 1;
-  // }
   
 </script>
 
 <div class="visualization">
-  <!-- <svg
-    width={graphWidth}
-    height={graphHeight}
-    on:mousemove={followMouse}
-    on:mouseleave={removePointer}
-    id={idContainer}
-  > -->
   <svg
     width={graphWidth}
     height={graphHeight}
@@ -140,42 +126,14 @@
     <Slider on:change={(e) => slider_year = e.detail.value} id="basic-slider" />
   </div>
     
-
-    <!-- {#if mousePosition.x !== null}
-      <g transform="translate({xScale(computeSelectedXValue(mousePosition.x))} 0)">
-        <line
-          x1="0"
-          x2="0"
-          y1={paddings.top}
-          y2={graphHeight - paddings.bottom - 2}
-          stroke="#000000"
-          stroke-width="1"
-        />
-        <circle
-          cx={0}
-          cy={yScale(data.csv.find((d) => d["index"] === computeSelectedXValue(mousePosition.x)))}
-          r="3"
-          fill="#000000"
-        />
-      </g>
-    {/if}
-  </svg>  -->
   <!-- Information when Hovering -->
   <div
     class={mousePosition.x === null ? "tooltip-hidden" : "tooltip-visible"}
     style="left: {pageMousePosition.x + 10}px; top: {pageMousePosition.y + 10}px"
   >
     {#if mousePosition.x !== null}
-      {parsed_data[slider_year]}%
-      <!-- <b>Dekad {currentHoveredPoint["Dekad"]} of {MONTHS[parseInt(currentHoveredPoint["Month"])-1]} {currentHoveredPoint["Year"]}</b> <br>
-      <div class="info-container">
-        <div class="info-box1"></div>
-        <div>&nbsp 1 Month Anomaly  <b>{parseInt(currentHoveredPoint["1 Month Anomaly (%)"])}%</b> </div>
-      </div>
-      <div class="info-container">
-        <div class="info-box2"></div>
-        <div>&nbsp 3 Months Anomaly  <b>{parseInt(currentHoveredPoint["3 Months Anomaly (%)"])}%</b> </div>
-      </div> -->
+    <b>Rural Population (as % of Total Population)</b> <br>
+      {parsed_data[slider_year].toString().slice(0,5)}%
     {/if}
   </div>
   <!-- Legend -->
