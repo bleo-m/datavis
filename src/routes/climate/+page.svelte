@@ -11,10 +11,14 @@
   navigationPage2="" navigationDirection2="left" 
   title='CLIMATE CHANGE' slideNumber=1>
     <div class="vis">
-      <p>
-      In recent years, climate change has greatly affected the countries in Central America's Northern Triangle - El Salvador, Guatemala, and Honduras, leading to food insecurity and 
-      migration. They are uniquely susceptible to the increase in greenhouse gas emissions, seen in figure [ ], despite them contributing near-nothing (less than 1%)  to climate change in 
-      comparison to the United States alone. This is due to the damages that changes in the climate have inflicted upon their agriculture, forestry, and fishing industries, upon which they 
+      <div class="callout">
+        <p>
+        In recent years, climate change has greatly affected the countries in Central America's Northern Triangle - El Salvador, Guatemala, and Honduras, leading to food insecurity and migration. They are uniquely susceptible to the increase in greenhouse gas emissions, seen in figure X, despite them contributing near-nothing (less than 1%) to climate change in 
+        comparison to the United States alone. 
+        </p>
+      </div>
+      
+      <p>This is due to the damages that changes in the climate have inflicted upon their agriculture, forestry, and fishing industries, upon which they 
       rely heavily. Just as emissions have increased appallingly since 1990, the percentage of forest area has steadily decreased for each Northern Triangle country. And despite efforts to 
       maintain the primary source of income for millions of people, as per the shaky increase in agricultural land, other factors have made it so that the profitability of rural industries 
       has steeply dropped (figure [ ]).
@@ -62,4 +66,10 @@
     font-weight: 300;
     line-height: 1.5em;
   }
+
+  .callout p{
+    font-size: 40px;
+    font-weight: bold;
+  }
+
 </style>
