@@ -8,12 +8,6 @@
   const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
   const LEGEND_SIZE = 20;
   let graphWidth = 1000;
-
-  onMount(() => {
-    let pageContent = document.getElementById('page-content');
-    graphWidth = pageContent.getBoundingClientRect().width;
-  });
-
   let graphHeight = 300;
   const paddings = {
     top: 20,
@@ -21,6 +15,11 @@
     right: 30,
     bottom: 60
   };
+
+  onMount(() => {
+    let pageContent = document.getElementById('page-content');
+    graphWidth = pageContent.getBoundingClientRect().width - paddings.left - paddings.right;
+  });
 
   // Scaling
   const yMax1 = Math.max(...data.rainData.map((d) => d["1 Month Anomaly (%)"]));
@@ -100,10 +99,10 @@
     <g>
       <line
         x1={paddings.left}
-        x2={graphWidth - paddings.right}
+        x2={graphWidth - paddings.right - 10}
         y1={graphHeight - paddings.bottom}
         y2={graphHeight - paddings.bottom}
-        stroke="#000000"
+        stroke="var(--black)"
         stroke-width="1"
       />
       <line
@@ -111,7 +110,7 @@
         x2={paddings.left}
         y1={paddings.top}
         y2={graphHeight - paddings.bottom}
-        stroke="#000000"
+        stroke="var(--black)"
         stroke-width="1"
       />
     </g>
@@ -121,7 +120,7 @@
       x2={graphWidth - paddings.right}
       y1={yScale(100)}
       y2={yScale(100)}
-      stroke="#000000"
+      stroke="var(--black)"
       stroke-width="2"
     />
     <g>
@@ -132,7 +131,7 @@
             x2={xScale(data.rainData[i+1].index)}
             y1={yScale(data.rainData[i]["1 Month Anomaly (%)"])}
             y2={yScale(data.rainData[i+1]["1 Month Anomaly (%)"])}
-            stroke="#FF5964"
+            stroke="var(--red)"
             stroke-width="2"
           />
           <line
@@ -140,7 +139,7 @@
             x2={xScale(data.rainData[i+1].index)}
             y1={yScale(data.rainData[i]["3 Months Anomaly (%)"])}
             y2={yScale(data.rainData[i+1]["3 Months Anomaly (%)"])}
-            stroke="#6CA3CF"
+            stroke="var(--blue)"
             stroke-width="2"
           />
         {/if}
@@ -154,13 +153,13 @@
           opacity="1"
           transform="translate({xScale(x)},0)"
         >
-          <line stroke="#000000" y2="6" />
-          <text dy="0.71em" fill="#000000" y="10" x="-5">
+          <line stroke="var(--black)" y2="6" />
+          <text dy="0.71em" fill="var(--black)" y="10" x="-5">
             {xTicks[x]}
           </text>
         </g>
       {/each}
-      <text x="{graphWidth - paddings.right}" y="5">Year</text>
+      <text x="{graphWidth - paddings.right - 10}" y="5">Year</text>
     </g>
     <g transform="translate({paddings.left}, 0)">
       {#each yTicks as y}
@@ -169,8 +168,8 @@
           opacity="1"
           transform="translate(0,{yScale(y)})"
         >
-          <line stroke="#000000" x2="-5" />
-          <text dy="0.32em" fill="#000000" x="-{paddings.left}">
+          <line stroke="var(--black)" x2="-5" />
+          <text dy="0.32em" fill="var(--black)" x="-{paddings.left}">
             {y}
           </text>
         </g>
@@ -185,14 +184,14 @@
           x2="0"
           y1={paddings.top}
           y2={graphHeight - paddings.bottom - 2}
-          stroke="#000000"
+          stroke="var(--black)"
           stroke-width="1"
         />
         <circle
           cx={0}
           cy={yScale(data.rainData.find((d) => d["index"] === computeSelectedXValue(mousePosition.x)))}
           r="3"
-          fill="#000000"
+          fill="var(--black)"
         />
       </g>
     {/if}
@@ -278,7 +277,7 @@
 
   .info-box1 {
     width: 7.5%;
-    background-color: #FF5964;
+    background-color: var(--red);
     display: block;
     padding-top: 7.5%;
     margin-bottom: 1%;
@@ -286,7 +285,7 @@
 
   .info-box2 {
     width: 7.5%;
-    background-color: #6CA3CF;
+    background-color: var(--blue);
     display: block;
     padding-top: 7.5%;
     margin-top: 1%;

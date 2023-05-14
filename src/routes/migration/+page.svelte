@@ -22,6 +22,7 @@
   >
     <div class="info-container">
       <div id="migration-graph-container" class="chart">
+        <h3>Rural Population (as % of Total Population)</h3>
         <BubbleGraph data={data}/>
       </div>
       <div>
@@ -33,7 +34,7 @@
 
 <style>
   .chart {
-    margin: 10px;
+    /* margin: 10px; */
     width: 40%;
   }
 
