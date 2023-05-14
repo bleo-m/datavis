@@ -1,6 +1,12 @@
 <script>
   import NavBar from '../../components/+NavBar.svelte';
   import PageSkeleton from '../../components/PageSkeleton.svelte';
+  import RingGraph from './rings.svelte';
+  export let data;
+  const mainTableResponses = data.csv;
+  // make array of responses to income_exp_food and exclude the submissions that are "N/A"
+  const incomeExpFood = mainTableResponses.map(response => parseInt(response.income_exp_food)).filter( answer => answer != 99);
+  console.log(incomeExpFood);
 </script>
 
 <main>
@@ -17,6 +23,9 @@
         agricultural production, and has drastically risen recently for the Northern Triangle. The number of people experiencing moderate or severe food insecurity has almost quadrupled from 
         2019, from 4.8 million to 17.3 million by 2020.”
       </p>
+
+      <RingGraph incomeExpFood={incomeExpFood}/>
+
       <p>
         In data taken directly from survey responders in this region of Central America, people have to borrow money on a regular basis just to afford food (see figure [ ]). For the three 
         countries – El Salvador, Guatemala, and Honduras – almost 7 million people experience acute hunger (Integrated Food Security Phase Classification (IPC) Phase 3+) as of 2022. As the 

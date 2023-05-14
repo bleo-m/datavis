@@ -22,10 +22,10 @@
   });
 
   // Scaling
-  const yMax1 = Math.max(...data.csv.map((d) => d["1 Month Anomaly (%)"]));
-  const yMax2 = Math.max(...data.csv.map((d) => d["3 Months Anomaly (%)"]));
+  const yMax1 = Math.max(...data.rainData.map((d) => d["1 Month Anomaly (%)"]));
+  const yMax2 = Math.max(...data.rainData.map((d) => d["3 Months Anomaly (%)"]));
   $: xScale = scaleLinear()
-              .domain([0, data.csv.length])
+              .domain([0, data.rainData.length])
               .range([paddings.left, graphWidth - paddings.right])
 
   $: yScale = scaleLinear()
@@ -76,12 +76,12 @@
 
   function computeSelectedXValue(value) {
     try{
-      currentHoveredPoint = data.csv[data.csv.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 1];
-      return data.csv.filter((d) => xScale(d.index) >= value)[0].index - 1;
+      currentHoveredPoint = data.rainData[data.rainData.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 2];
+      return data.rainData.filter((d) => xScale(d.index) >= value)[0].index - 1;
     }
     catch {
-      currentHoveredPoint = data.csv[data.csv.length - 1];
-      return data.csv.length - 1;
+      currentHoveredPoint = data.rainData[data.rainData.length - 1];
+      return data.rainData.length - 1;
     }
   }
 
@@ -124,21 +124,21 @@
       stroke-width="2"
     />
     <g>
-      {#each data.csv as d, i}
-        {#if i!= data.csv.length - 1}
+      {#each data.rainData as d, i}
+        {#if i!= data.rainData.length - 1}
           <line
-            x1={xScale(data.csv[i].index)}
-            x2={xScale(data.csv[i+1].index)}
-            y1={yScale(data.csv[i]["1 Month Anomaly (%)"])}
-            y2={yScale(data.csv[i+1]["1 Month Anomaly (%)"])}
+            x1={xScale(data.rainData[i].index)}
+            x2={xScale(data.rainData[i+1].index)}
+            y1={yScale(data.rainData[i]["1 Month Anomaly (%)"])}
+            y2={yScale(data.rainData[i+1]["1 Month Anomaly (%)"])}
             stroke="var(--red)"
             stroke-width="2"
           />
           <line
-            x1={xScale(data.csv[i].index)}
-            x2={xScale(data.csv[i+1].index)}
-            y1={yScale(data.csv[i]["3 Months Anomaly (%)"])}
-            y2={yScale(data.csv[i+1]["3 Months Anomaly (%)"])}
+            x1={xScale(data.rainData[i].index)}
+            x2={xScale(data.rainData[i+1].index)}
+            y1={yScale(data.rainData[i]["3 Months Anomaly (%)"])}
+            y2={yScale(data.rainData[i+1]["3 Months Anomaly (%)"])}
             stroke="var(--blue)"
             stroke-width="2"
           />
@@ -189,7 +189,7 @@
         />
         <circle
           cx={0}
-          cy={yScale(data.csv.find((d) => d["index"] === computeSelectedXValue(mousePosition.x)))}
+          cy={yScale(data.rainData.find((d) => d["index"] === computeSelectedXValue(mousePosition.x)))}
           r="3"
           fill="var(--black)"
         />

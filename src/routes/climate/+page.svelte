@@ -3,7 +3,6 @@
   import PageSkeleton from '../../components/PageSkeleton.svelte';
   import LineGraph from './lines.svelte';
   export let data;
-
   const map_src = "/images/northern-triangle-map.png";
 </script>
 
