@@ -33,6 +33,8 @@
 /* make the colors a variable so we can reuse them across the site easily */
 :root {
   --red: #FF5964;
+  --blue: #6CA3CF;
   --black: #212427;
   --white: whitesmoke;
+  --gray: rgba(128, 128, 128, 0.25);
 }
