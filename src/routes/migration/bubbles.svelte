@@ -3,7 +3,6 @@
   import { scaleLinear } from "d3-scale";
   import { onMount } from 'svelte';
   import Slider from './slider.svelte';
-  import { loop_guard } from 'svelte/internal';
 
   export let data = [];
   data = data["data"];
@@ -11,7 +10,7 @@
   let slider_year = 1960;
 
   // const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
-  let countries = ["Honduras", "El Salvador", "Nicaragua"];
+  // let countries = ["Honduras", "El Salvador", "Nicaragua"];
   let years = [];
   for (let i=1960; i<2022; i=i+1) { 
     years.push(i); 
@@ -55,7 +54,7 @@
 
   $: yScale = scaleLinear()
               .domain([0, 9])
-              .range([graphHeight - paddings.bottom, paddings.top])
+              .range([paddings.top, graphHeight - paddings.bottom])
 
   // // Hover Effects
   // const idContainer = "svg-container-" + Math.random() * 1000000;
@@ -135,89 +134,9 @@
     <h3>Year: {slider_year}</h3>
     <Slider on:change={(e) => slider_year = e.detail.value} id="basic-slider" />
   </div>
-    <!-- X and Y axis -->
-    <!-- <g>
-      <line
-        x1={paddings.left}
-        x2={graphWidth - paddings.right}
-        y1={graphHeight - paddings.bottom}
-        y2={graphHeight - paddings.bottom}
-        stroke="#000000"
-        stroke-width="1"
-      />
-      <line
-        x1={paddings.left}
-        x2={paddings.left}
-        y1={paddings.top}
-        y2={graphHeight - paddings.bottom}
-        stroke="#000000"
-        stroke-width="1"
-      />
-    </g> -->
-    <!-- Normal, 1 Month and 3 Months Anomaly Lines -->
-    <!-- <line
-      x1={paddings.left}
-      x2={graphWidth - paddings.right}
-      y1={yScale(100)}
-      y2={yScale(100)}
-      stroke="#000000"
-      stroke-width="2"
-    />
-    <g>
-      {#each data.csv as d, i}
-        {#if i!= data.csv.length - 1}
-          <line
-            x1={xScale(data.csv[i].index)}
-            x2={xScale(data.csv[i+1].index)}
-            y1={yScale(data.csv[i]["1 Month Anomaly (%)"])}
-            y2={yScale(data.csv[i+1]["1 Month Anomaly (%)"])}
-            stroke="#FF5964"
-            stroke-width="2"
-          />
-          <line
-            x1={xScale(data.csv[i].index)}
-            x2={xScale(data.csv[i+1].index)}
-            y1={yScale(data.csv[i]["3 Months Anomaly (%)"])}
-            y2={yScale(data.csv[i+1]["3 Months Anomaly (%)"])}
-            stroke="#6CA3CF"
-            stroke-width="2"
-          />
-        {/if}
-      {/each}
-    </g> -->
-    <!-- Ticks on Axis -->
-    <!-- <g transform="translate(0, {graphHeight - paddings.bottom})">
-      {#each Object.keys(xTicks) as x}
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate({xScale(x)},0)"
-        >
-          <line stroke="#000000" y2="6" />
-          <text dy="0.71em" fill="#000000" y="10" x="-5">
-            {xTicks[x]}
-          </text>
-        </g>
-      {/each}
-      <text x="{graphWidth - paddings.right}" y="5">Year</text>
-    </g>
-    <g transform="translate({paddings.left}, 0)">
-      {#each yTicks as y}
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,{yScale(y)})"
-        >
-          <line stroke="#000000" x2="-5" />
-          <text dy="0.32em" fill="#000000" x="-{paddings.left}">
-            {y}
-          </text>
-        </g>
-      {/each}
-      <text x="-{paddings.left}" y="15">Variation from Average (%)</text>
-    </g>
+    
 
-    {#if mousePosition.x !== null}
+    <!-- {#if mousePosition.x !== null}
       <g transform="translate({xScale(computeSelectedXValue(mousePosition.x))} 0)">
         <line
           x1="0"
@@ -235,7 +154,7 @@
         />
       </g>
     {/if}
-  </svg> -->
+  </svg>  -->
   <!-- Information when Hovering -->
   <!-- <div
     class={mousePosition.x === null ? "tooltip-hidden" : "tooltip-visible"}
