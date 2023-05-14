@@ -17,11 +17,11 @@
     align-items: center;
     position: relative;
   }
-  .right {
+  /* .right {
     display: inline-block;
     margin-top: 1vw;
     
-  }
+  } */
 
   .title{
     font-family: Druk;

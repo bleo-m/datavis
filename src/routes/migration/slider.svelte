@@ -26,6 +26,9 @@
   let accelerationTimer = null;
   let mouseEventShield;
 
+  let onDragStart;
+  let onDragEnd;
+
   onMount(() => {
     /**
      * Make graph height / width the size of the content element for the page
@@ -36,6 +39,23 @@
     e.preventDefault();
     e.stopPropagation();
   });
+
+  onDragStart = function onDragStart(e) {
+    // If mouse event add a pointer events shield
+    if (e.type === "mousedown") document.body.append(mouseEventShield);
+    currentThumb = thumb;
+  }
+
+  onDragEnd = function onDragEnd(e) {
+    // If using mouse - remove pointer event shield
+    if (e.type === "mouseup") {
+      if (document.body.contains(mouseEventShield))
+        document.body.removeChild(mouseEventShield);
+      // Needed to check whether thumb and mouse overlap after shield removed
+      if (isMouseInElement(e, thumb)) thumbHover = true;
+    }
+    currentThumb = null;
+  }
     
   });
   // Dispatch 'change' events
@@ -62,6 +82,7 @@
 
   function onTrackEvent(e) {
     // Update value immediately before beginning drag
+    elementX = element.getBoundingClientRect().left;
     updateValueOnEvent(e);
     onDragStart(e);
   }
@@ -70,22 +91,22 @@
     thumbHover = thumbHover ? false : true;
   }
 
-  function onDragStart(e) {
-    // If mouse event add a pointer events shield
-    if (e.type === "mousedown") document.body.append(mouseEventShield);
-    currentThumb = thumb;
-  }
+  // function onDragStart(e) {
+  //   // If mouse event add a pointer events shield
+  //   if (e.type === "mousedown") document.body.append(mouseEventShield);
+  //   currentThumb = thumb;
+  // }
 
-  function onDragEnd(e) {
-    // If using mouse - remove pointer event shield
-    if (e.type === "mouseup") {
-      if (document.body.contains(mouseEventShield))
-        document.body.removeChild(mouseEventShield);
-      // Needed to check whether thumb and mouse overlap after shield removed
-      if (isMouseInElement(e, thumb)) thumbHover = true;
-    }
-    currentThumb = null;
-  }
+  // function onDragEnd(e) {
+  //   // If using mouse - remove pointer event shield
+  //   if (e.type === "mouseup") {
+  //     if (document.body.contains(mouseEventShield))
+  //       document.body.removeChild(mouseEventShield);
+  //     // Needed to check whether thumb and mouse overlap after shield removed
+  //     if (isMouseInElement(e, thumb)) thumbHover = true;
+  //   }
+  //   currentThumb = null;
+  // }
 
   // Check if mouse event cords overlay with an element's area
   function isMouseInElement(event, element) {
@@ -208,6 +229,8 @@
         on:mousedown={onDragStart}
         on:mouseover={() => (thumbHover = true)}
         on:mouseout={() => (thumbHover = false)}
+        on:focus={() => (thumbHover = true)}
+        on:blur={() => (thumbHover = false)}
       >
         {#if holding || thumbHover}
           <div
