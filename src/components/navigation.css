@@ -28,8 +28,8 @@
     transition: background-color 0.25s ease;
   }
   .gray-yellow:hover{
-    background-color: rgba(251,255,18,0.25);
-    transition: background-color 0.25s ease;
+    background-color: rgba(255,184,43,0.5);
+    transition: background-color 0.25s ease;  
   }
   .gray-blue:hover{
     background-color: rgba(53,167,255,0.5);
@@ -61,5 +61,5 @@
   --black: #212427;
   --white: whitesmoke;
   --gray: rgba(128, 128, 128, 0.25);
-  --yellow: #FBFF12;
+  --yellow: #ffb82b;
 }
