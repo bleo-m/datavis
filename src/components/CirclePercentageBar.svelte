@@ -97,17 +97,46 @@
       </div>
     </div>
     <div class="right">
-      <div class="progress-circle2 right" style="{cssVarStyle2}">{PERCENTAGE2}%</div> </div>
+      <div 
+        class="progress-circle2 right" 
+        style="{cssVarStyle2}"
+        on:mouseenter={mouseEnterP2}
+        on:mouseleave={mouseLeaveP2}
+      >
+        {PERCENTAGE2}%
+      </div> 
+    </div>
   </div>
   <div class="circle-container">
     <h3 class="left-side">Made Preparations</h3>
     <div class="middle">
-      <div class="progress-circle3" style="{cssVarStyle3}">{PERCENTAGE3}%</div>
+      <div 
+        class="progress-circle3" 
+        style="{cssVarStyle3}"
+        on:mouseenter={mouseEnterP3}
+        on:mouseleave={mouseLeaveP3}
+      >
+        {PERCENTAGE3}%
+      </div>
     </div>
     <div class="right">
-      <div class="progress-circle4 right" style="{cssVarStyle4}">{PERCENTAGE4}%</div> </div>
+      <div 
+        class="progress-circle4 right" 
+        style="{cssVarStyle4}"
+        on:mouseenter={mouseEnterP4}
+        on:mouseleave={mouseLeaveP4}
+      >
+        {PERCENTAGE4}%
+      </div> 
+    </div>
   </div>
-  <slot hovering={hovering} hoveringP1={hoveringP1}></slot>
+  <slot 
+    hoveringP1={hoveringP1} 
+    hoveringP2={hoveringP2}
+    hoveringP3={hoveringP3}
+    hoveringP4={hoveringP4}
+  >
+  </slot>
 </div>
 
 
@@ -154,6 +183,10 @@
     align-items: center;
     font-size: 30px;
   }
+  .progress-circle1:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
 
   .progress-circle2 {
     background: var(--background2);
@@ -166,6 +199,10 @@
     justify-content: center;
     align-items: center;
     font-size: 30px;
+  }
+  .progress-circle2:hover {
+    transform: scale(1.1);
+    cursor: pointer;
   }
 
   .progress-circle3 {
@@ -180,6 +217,10 @@
     align-items: center;
     font-size: 30px;
   }
+  .progress-circle3:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
 
   .progress-circle4 {
     background: var(--background2);
@@ -192,6 +233,10 @@
     justify-content: center;
     align-items: center;
     font-size: 30px;
+  }
+  .progress-circle4:hover {
+    transform: scale(1.1);
+    cursor: pointer;
   }
 
   </style>
