@@ -3,6 +3,7 @@
   import { scaleLinear } from "d3-scale";
   import { onMount } from 'svelte';
   import Slider from './slider.svelte';
+  import { loop_guard } from 'svelte/internal';
 
   export let data = [];
   data = data["data"];
@@ -16,14 +17,14 @@
     years.push(i); 
   }
   // const LEGEND_SIZE = 20;
-  let graphWidth = 1000;
+  let graphWidth = 500;
   let graphHeight = 500;
 
   const paddings = {
     top: 20,
     left: 20,
-    right: 30,
-    bottom: 10
+    right: 20,
+    bottom: 20
   };
 
   onMount(() => {
@@ -47,23 +48,14 @@
   // // Scaling
   // const yMax1 = Math.max(...data.csv.map((d) => d["1 Month Anomaly (%)"]));
   // const yMax2 = Math.max(...data.csv.map((d) => d["3 Months Anomaly (%)"]));
+  let numCircles = [...Array(10).keys()];
   $: xScale = scaleLinear()
-              .domain([0, 10])
+              .domain([0, 9])
               .range([paddings.left, graphWidth - paddings.right])
 
   $: yScale = scaleLinear()
-              .domain([0, 10])
+              .domain([0, 9])
               .range([graphHeight - paddings.bottom, paddings.top])
-
-
-  // // Tick Marks
-  // let xTicks = {0:2021, 36:2022, 72:2023};
-  // let yTicks = [];
-  // $: {
-  //   for (let i=0; i<Math.round(Math.max(yMax1, yMax2))+1; i=i+20) {
-  //     yTicks.push(i);
-  //   }
-  // }
 
   // // Hover Effects
   // const idContainer = "svg-container-" + Math.random() * 1000000;
@@ -116,15 +108,25 @@
     height={graphHeight}
   >
     <g>
-      {#each years as y, j}
-        {#each years as x, i}
+      {#each numCircles as y, j}
+        {#each numCircles as x, i}
+          {#if 10*y + x <= parsed_data[slider_year]}
             <circle
               cx={xScale(i)}
               cy={yScale(j)}
               r="10"
               stroke="black"
-              fill="var(--white)"
+              fill="#FF5964"
             />
+            {:else}
+              <circle
+                cx={xScale(i)}
+                cy={yScale(j)}
+                r="10"
+                stroke="black"
+                fill="var(--white)"
+              />
+          {/if}
         {/each}
       {/each}
     </g>

@@ -34,7 +34,7 @@
 <style>
   .chart {
     margin: 10px;
-    width: 65%;
+    width: 40%;
   }
 
   .info-container {
