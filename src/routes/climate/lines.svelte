@@ -5,7 +5,7 @@
   export let data = [];
 
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const KEYS = {"Normal":["#000000", 100], "1 Month Anomaly":["#FF5964",100], "3 Months Anomaly":["#6CA3CF",125]};
+  const KEYS = {"Normal":["var(--black)", 100], "1 Month Anomaly":["var(--red)",100], "3 Months Anomaly":["var(--blue)",125]};
   const LEGEND_SIZE = 20;
   let graphWidth = 1000;
   let graphHeight = 300;
@@ -76,7 +76,7 @@
 
   function computeSelectedXValue(value) {
     try{
-      currentHoveredPoint = data.rainData[data.rainData.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 2];
+      currentHoveredPoint = data.rainData[data.rainData.filter((d) => xScale(d["index"]) >= value)[0]["index"] - 1];
       return data.rainData.filter((d) => xScale(d.index) >= value)[0].index - 1;
     }
     catch {

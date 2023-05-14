@@ -182,6 +182,7 @@
     justify-content: center;
     align-items: center;
     font-size: 30px;
+    color: var(--blue);
   }
   .progress-circle1:hover {
     transform: scale(1.1);
@@ -199,6 +200,7 @@
     justify-content: center;
     align-items: center;
     font-size: 30px;
+    color: var(--red);
   }
   .progress-circle2:hover {
     transform: scale(1.1);
@@ -216,6 +218,7 @@
     justify-content: center;
     align-items: center;
     font-size: 30px;
+    color: var(--blue);
   }
   .progress-circle3:hover {
     transform: scale(1.1);
@@ -233,6 +236,7 @@
     justify-content: center;
     align-items: center;
     font-size: 30px;
+    color: var(--red);
   }
   .progress-circle4:hover {
     transform: scale(1.1);
