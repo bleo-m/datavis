@@ -13,16 +13,23 @@
     title="CLIMATE CHANGE AND FOOD INSECURITY" slideNumber=0>
     <div class="home-container">
       <section>
-        <p class="bold">The impact of climate change and food insecurity in the Northern Triangle is a humanitarian crisis that requires urgent action. The root causes of this crisis are complex and interrelated, and addressing them will require a multi-faceted approach that involves all stakeholders. The resulting food insecurity is both a result of and a driving factor for migration.</p>
-        <CirclePercentageBar 
-          let:hoveringP1={hoveringP1} 
-          let:hoveringP2={hoveringP2} 
-          let:hoveringP3={hoveringP3} 
-          let:hoveringP4={hoveringP4}
-        >
-          <p>According to a 2021 survey, among people experiencing severe hunger, <span class:activeBlue={hoveringP1}>37%</span> said they had plans to migrate, with <span class:activeBlue={hoveringP3}>23%</span> having made concrete preparations to do so. By comparison, only <span class:activeRed={hoveringP2}>18%</span> of people experiencing little to no hunger said they intended to migrate, with just <span class:activeRed={hoveringP4}>7%</span> having prepared for the journey.</p>
-        </CirclePercentageBar>
-        <p>The number of people experiencing moderate or severe food insecurity has almost quadrupled from 2019, from 4.8 million to 17.3 million by 2020. This is a humanitarian crisis that has forced many people in the Northern Triangle, especially those in rural areas without employment, formal education, or a social safety net, to migrate externally in search of work.</p>
+        <p class="bold">
+          The Central American countries of El Salvador, Guatemala, and Honduras (otherwise known as the Northern Triangle) are greatly distressed by climate change, food insecurity, and migration
+        </p>
+
+        <p class="animate__animated animate__fadeIn animate__delay-1s">
+          As climate change has worsened food insecurity over time, many people in the Northern Triangle, particularly those in rural areas without employment, formal education, or a social safety net, have been forced to migrate externally in search of work.
+        </p>
+
+
+        <!-- TODO: this sounds like it would better fit in the report, not on the story we are trying to show someone given that text space is a limited resource-->
+        <p class="animate__animated animate__fadeIn animate__delay-2s">
+          There are countless pamphlets and protracted papers with long walls of text on this topic, but there is a lack of easily followable and understandable presentations of this data. A cohesive compilation of all of our research, with clear and interactive data visualizations to accompany the information, serves to better pinpoint the most significant issues that the Northern Triangle is experiencing.
+        </p>
+
+        <p class="animate__animated animate__fadeIn animate__delay-3s">
+          In the following pages, the story we hope to outline is how climate change has created a humanitarian crisis in the Northern Triangle that <b>requires urgent action.</b>
+        </p>
       </section>  
       <img src={src} alt="central american food in black and white"/>
     </div>  
@@ -57,22 +64,7 @@ p{
 }
 .bold{
   font-weight: bold;
-}
-span {
-  transition: all 500ms ease-in;
-  transform: 30px;
-  will-change: transform;
-}
-
-.activeBlue {
-  color: var(--blue);
-  font-weight: bold;
-  font-size: 36px;
-}
-.activeRed {
-  color: var(--red);
-  font-weight: bold;
-  font-size: 36px;
+  font-size: 32px;
 }
 </style>
 
