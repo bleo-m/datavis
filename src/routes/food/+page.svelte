@@ -28,7 +28,7 @@
         <RingGraph incomeExpFood={incomeExpFood}/>
         <b> A large amount of families would not say that their household income is enough to cover the expenses of purchasing food.</b>
       </div>  
-\
+      
       <div class="graph-data">
         <b>Families in the Northern Triangle have to borrow money to buy food. This option is unfortunately not always available.</b>
         <RingGraph2 lcsiBorrow={lcsiBorrow}/>
