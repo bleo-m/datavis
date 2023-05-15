@@ -64,7 +64,7 @@
       increased fire-prone weather conditions, and more extreme weather events. High temperatures result in increased evapotranspiration, reducing water availability, raising food prices, 
       and creating food insecurity.” 
 
-      It causes the profitability and arability of the land to diminish, making it both harder to buy and grow food. To learn more about food insecurity, navigate <span class="orange">down</span>.
+      It causes the profitability and arability of the land to diminish, making it both harder to buy and grow food. To learn more about food insecurity, navigate down.
       </p>
 
     </div>
