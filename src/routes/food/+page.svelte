@@ -2,10 +2,12 @@
   import NavBar from '../../components/+NavBar.svelte';
   import PageSkeleton from '../../components/PageSkeleton.svelte';
   import RingGraph from './rings.svelte';
+  import RingGraph2 from './rings2.svelte';
   export let data;
   const mainTableResponses = data.csv;
   // make array of responses to income_exp_food and exclude the submissions that are "N/A"
   const incomeExpFood = mainTableResponses.map(response => parseInt(response.income_exp_food)).filter( answer => answer != 99);
+  const lcsiBorrow = mainTableResponses.map(response => parseInt(response.lcsi_borrow)).filter( answer => answer != 88);
 </script>
 
 <main>
@@ -17,14 +19,18 @@
   navigationDirection2="left"
   slideNumber={3}>
     <div class="vis">
+      <div class="graph-data">
+        <RingGraph incomeExpFood={incomeExpFood}/>
+        <b> A large ammount of families would not say that their household income is enough to cover the expenses of purchasing food.</b>
+      </div>  
       <p>
         Food insecurity is both a result of and a driving factor for migration, and is definitely exacerbated by climate change. It is substantially the result of lowered profits from 
         agricultural production, and has drastically risen recently for the Northern Triangle. The number of people experiencing moderate or severe food insecurity has almost quadrupled from 
         2019, from 4.8 million to 17.3 million by 2020.”
       </p>
       <div class="graph-data">
-        <RingGraph incomeExpFood={incomeExpFood}/>
-        <b> A large ammount of families would not say that their household income is enough to cover the expenses of purchasing food.</b>
+        <b>Families in the Northern Triangle have to borrow money to buy food. This option is unfortunately not always available.</b>
+        <RingGraph2 lcsiBorrow={lcsiBorrow}/>
       </div>  
       <p>
         In data taken directly from survey responders in this region of Central America, people have to borrow money on a regular basis just to afford food (see figure [ ]). For the three 
