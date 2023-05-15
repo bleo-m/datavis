@@ -25,6 +25,7 @@
       <div id="migration-graph-container" class="chart left">
         <h3>Rural Population (as % of Total Population)</h3>
         <BubbleGraph data={data}/>
+        <p class="source">This data visualization was made with data contributed by the World Bank.</p>
       </div>
       <div class="right">
         <p>The external migration out of the Northern Triangle constitutes a humanitarian crisis. “On average, an estimated 407,000 people have left annually in recent years.” Beyond the damages to the land and profits, climate change has caused more diseases to emerge, and migration, especially in rural populations, has been greatly affected.<br><br>Rural populations are hit especially hard by climate change and its resulting food insecurity, as “rural communities often rely on subsistence agriculture and natural resources.” Changes and losses regarding agriculture can destroy their entire livelihood; as such, people in the Northern Triangle, especially those in rural areas “without employment, formal education, or a social safety net”, are forced to migrate externally in search of work.</p>
@@ -72,6 +73,11 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 300;
     line-height: 1.5em;
+  }
+
+  .source {
+    font-size: 16px;
+    font-style: italic;
   }
 
 

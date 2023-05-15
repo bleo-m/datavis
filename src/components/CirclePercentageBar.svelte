@@ -130,6 +130,7 @@
       </div> 
     </div>
   </div>
+  <p class="source">This data visualization was made with data contributed by the World Bank.</p>
   <slot 
     hoveringP1={hoveringP1} 
     hoveringP2={hoveringP2}
@@ -137,6 +138,7 @@
     hoveringP4={hoveringP4}
   >
   </slot>
+  
 </div>
 
 
@@ -241,6 +243,13 @@
   .progress-circle4:hover {
     transform: scale(1.1);
     cursor: pointer;
+  }
+  .source {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    line-height: 1.5em;
+    font-size: 16px;
+    font-style: italic;
   }
 
   </style>
