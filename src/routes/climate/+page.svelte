@@ -101,6 +101,9 @@
   }
   .right {
     width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .subhead-container{

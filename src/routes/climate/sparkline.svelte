@@ -17,7 +17,7 @@
 
   onMount(() => {
     let pageContent = document.getElementById('page-content');
-    graphWidth = pageContent.getBoundingClientRect().width * 2/3 - paddings.left - paddings.right;
+    graphWidth = pageContent.getBoundingClientRect().width /2 - paddings.left - paddings.right;
     graphHeight = graphWidth *2/3;
   });
 
