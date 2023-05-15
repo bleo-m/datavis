@@ -49,8 +49,7 @@
         </p>  
       </div>
       <p>
-      According to the Intergovernmental Panel on Climate Change (IPCC), weather patterns are likely 
-      becoming more extreme and unpredictable, with more frequent droughts and floods that cause dangerous landslides, reduce agricultural yields, and destroy infrastructure. After an 
+      According to the Intergovernmental Panel on Climate Change (IPCC), weather patterns are likely becoming more extreme and unpredictable, with more frequent droughts and floods that cause dangerous landslides, reduce agricultural yields, and destroy infrastructure. After an 
       irregular rainy season in Guatemala, for instance, farmers lost almost 80 percent of corn grown in the highlands. In El Salvador, 50 percent of corn and bean farmers lost half of their 
       crop after Tropical Storms Amanda and Cristóbal in May and June 2020.
       </p>
@@ -61,16 +60,11 @@
       </div>
 
       <p>
-      This constitutes a humanitarian crisis. Beyond the damages to the land and profits, climate change has caused more diseases to emerge. Rural populations are hit especially hard, as 
-      “rural communities often rely on subsistence agriculture and natural resources.” Changes and losses regarding agriculture can destroy their entire livelihood; as such, people in the 
-      Northern Triangle, especially those in rural areas “without employment, formal education, or a social safety net”, are forced to migrate externally in search of work. To this point, 
-      see the decline in rural populations by navigating to “Migration.” As this tends to be primarily men, families are also divided (see figure [ ]). <br><br>
-
       And “toward the end of the century, as temperatures in Central America rise between 2.1°C and 3.3°C, the Northern Triangle is expected to experience increased aridity and drought, 
       increased fire-prone weather conditions, and more extreme weather events. High temperatures result in increased evapotranspiration, reducing water availability, raising food prices, 
-      and creating food insecurity.”
+      and creating food insecurity.” 
 
-      To learn more about food insecurity, click down.
+      It causes the profitability and arability of the land to diminish, making it both harder to buy and grow food. To learn more about food insecurity, navigate <span class="orange">down</span>.
       </p>
 
     </div>
@@ -167,6 +161,11 @@
   100% {
     color: #222;
   }
+}
+
+.orange {
+  color: var(--yellow);
+  text-decoration: bold;
 }
 
 </style>

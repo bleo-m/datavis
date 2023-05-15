@@ -15,7 +15,7 @@
   }
   // const LEGEND_SIZE = 20;
   let graphWidth = 500;
-  let graphHeight = 500;
+  let graphHeight = 450;
 
   const paddings = {
     top: 20,

@@ -57,7 +57,7 @@
   }
 
   .left {
-    width:50%;
+    width:45%;
   }
 
   .right {
