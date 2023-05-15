@@ -3,7 +3,7 @@
     import { scaleLinear } from "d3-scale";
     import { onMount } from 'svelte';
   
-    export let incomeExpFood = [];
+    export let lcsiBorrow = [];
   
     // const LEGEND_SIZE = 20;
     let graphWidth = 400;
@@ -26,30 +26,29 @@
     // });
 
     // Used to group responses 1 and 2 together, and 4 and 5 together
+
     const responseIndices = {
         1: 0,
-        2: 0,
+        2: 2,
         3: 1,
-        4: 1,
-        5: 1
     }
 
-    const responseCount = [0, 0];
-    const totalResponses = incomeExpFood.length;
+    const responseCount = [0, 0, 0];
+    const totalResponses = lcsiBorrow.length;
 
     // add up the responses by kind
-    incomeExpFood.forEach((response) => { 
+    lcsiBorrow.forEach((response) => { 
         const index = responseIndices[response];
         responseCount[index]++;
     });
 
-    const data = [responseCount[1], totalResponses - responseCount[1]];
+    const data = responseCount;
+    console.log(data);
     const radius = (graphWidth - 40) / 2;
 
     // Run only on browser
     onMount(() => {
-
-        let colors = ["#ffb82b", "#e3e3e3"];
+        let colors = ["#ffb82b", "#ff7940", "#e3e3e3"];
 
         let sizes = {
         innerRadius: radius * 0.9,
@@ -57,20 +56,20 @@
         };
 
         let durations = {
-        entryAnimation: 2000
+        entryAnimation: 3000
         };
 
         draw();
 
         function draw() {
-        d3.select("#chart").html("");
+        d3.select("#chart2").html("");
         
         let generator = d3.pie()
             .sort(null);
 
         let chart = generator(data);
 
-        let arcs = d3.select("#chart")
+        let arcs = d3.select("#chart2")
             .append("g")
             .attr("transform", "translate(200, 200)")
             .selectAll("path")
@@ -87,14 +86,14 @@
 
 
         // large bold text in the middle
-        let text = d3.select("#chart").select('g')
+        let text = d3.select("#chart2").select('g')
             .append("text")
             .attr("text-anchor", "middle")
             .attr('font-size', '4em')
             .attr('font-weight', 'bold')
             .attr('fill', '#ffb82b')
             .attr('alignment-baseline', 'middle')
-            .text(`${Math.floor(responseCount[1] / totalResponses * 100)}%`);   // percentage of people who responded 4 or 5
+            .text(`${Math.floor(responseCount[0] / totalResponses * 100)}%`);   // percentage of people who responded yes
 
         let angleInterpolation = d3.interpolate(generator.startAngle()(), generator.endAngle()());
         let innerRadiusInterpolation = d3.interpolate(0, sizes.innerRadius);
@@ -124,13 +123,13 @@
         text.transition()
             .duration(durations.entryAnimation)
             .tween("text", () => {
-            return t => text.text(`${Math.floor(responseCount[1] / totalResponses * 100 * t)}%`);
+            return t => text.text(`${Math.floor(responseCount[0] / totalResponses * 100 * t)}%`);
             })
             .tween("fontSize", () => {
             return t => text.attr('font-size', `${fontInterpolation(t)}px`);
             });
 
-        // d3.select("#chart")
+        // d3.select("#chart2")
         //     .transition()
         //     .duration(durations.entryAnimation)
         //     .tween("arcRadii", () => {
@@ -144,7 +143,7 @@
     });
 
     // Hover Effects
-    const idContainer = "chart";
+    const idContainer = "chart2";
     let mousePosition = { x: null, y: null };
     let pageMousePosition = { x: null, y: null };
     let currentArc = 0;
@@ -180,38 +179,29 @@
 
 
 <div class="visualization">
-    <svg id="chart" 
+    <svg id="chart2" 
     width={graphWidth} 
     height={graphHeight}
     ></svg>
 
     <div
     class={mousePosition.x === null ? "tooltip-hidden" : "tooltip-visible"}
-    style="left: {pageMousePosition.x + 10}px; top: {pageMousePosition.y + 10}px"
+    style="left: {pageMousePosition.x - 300}px; top: {pageMousePosition.y + 16}px"
   >
     {#if mousePosition.x !== null && currentArc === 0}
-    <b>
-        {data[0]} families responded with:
-        <br>
-    </b>
-    <div>
-        "Sometimes enough"
-        <br>
-        "Rarely enough"
-        <br>
-        "Insufficient"
-    </div>
+    <p>
+        {data[0]} families responded <b>"Yes"</b>
+    </p>
     {/if}
     {#if mousePosition.x !== null && currentArc === 1}
-    <b>
-        {data[1]} families responded with:
-        <br>
-    </b>
-    <div>
-        "Enough"
-        <br>
-        "Almost enough"
-    </div>
+    <p>
+        {data[1]} families responded <b>"No, because this strategy has been exhausted"</b>
+    </p>
+    {/if}
+    {#if mousePosition.x !== null && currentArc === 2}
+    <p>
+        {data[2]} families responded <b>"No"</b>
+    </p>
     {/if}
   </div>
 </div>
