@@ -31,7 +31,7 @@
       </div>
     </div>
     <div>
-      <p>Quantitative data says the same: as shown in figure [ ], migration has been consistently negative in the Northern Triangle. As this tends to be primarily men, families are also divided (see figure [ ]). This leads to familial and social instability, driving up tensions and reducing the quality of life even further.</p>
+      <p>Quantitative data says the same: migration has been consistently negative in the Northern Triangle. As this tends to be primarily men, families are also divided. This leads to familial and social instability, driving up tensions and reducing the quality of life even further.</p>
       <p>And, as the Council on Foreign Relations (CFR) reports: “Many households depend on remittances, or money sent home by relatives or friends living and working abroad…Remittances to Latin America amounted to nearly $135 billion in 2021, a 24 percent increase from the previous year…Remittances to the Northern Triangle made up nearly a quarter of that.” But remittances and even recent conflicted policy attempts to handle migration completely fail to mitigate the root causes of emigration. As testament, “critics say U.S. policies have been largely reactive, prompted by upturns in migration to the U.S.-Mexico border.”</p>
       <p>Altogether, migration has caused serious damages to the Northern Triangle, and if the country is to recover from the ensuing turmoil, deeper issues – like climate change and the accompanying food insecurity – must be tackled first.</p>
     </div>
