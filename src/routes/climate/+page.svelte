@@ -2,6 +2,7 @@
   import 'animate.css';
   import PageSkeleton from '../../components/PageSkeleton.svelte';
   import LineGraph from './lines.svelte';
+  import Sparkline from './sparkline.svelte';
   export let data;
   const map_src = "/images/northern-triangle-map.png";
 </script>
@@ -31,14 +32,15 @@
       </div>
 
       <div class="middle-section">
-        <p>This is due to the damages that changes in the climate have inflicted upon their agriculture, forestry, and fishing industries, upon which they 
+        <div class="left" id="page-content">
+          <h3>Contribution of Agriculture, Forestry, and Fishing to GDP</h3>
+          <Sparkline bind:data={data}/>
+        </div>
+        <p class="right">This is due to the damages that changes in the climate have inflicted upon their agriculture, forestry, and fishing industries, upon which they 
         rely heavily. Just as emissions have increased appallingly since 1990, the percentage of forest area has steadily decreased for each Northern Triangle country. And despite efforts to 
         maintain the primary source of income for millions of people, as per the shaky increase in agricultural land, other factors have made it so that the profitability of rural industries 
         has steeply dropped (figure [ ]).
         </p>
-      </div>
-      <div>
-        
       </div>
 
       <div class="subhead-wide">
@@ -96,6 +98,15 @@
   .middle-section{
     margin-top: 40px;
     margin-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+  .left {
+    width: 60%
+  }
+  .right {
+    width: 40%;
   }
 
   .subhead-container{
