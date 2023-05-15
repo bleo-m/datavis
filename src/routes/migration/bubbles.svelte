@@ -135,31 +135,6 @@
       {parsed_data[slider_year].toString().slice(0,5)}%
     {/if}
   </div>
-  <!-- Legend -->
-  <!-- <div>
-    <svg
-      width={graphWidth}
-      height={LEGEND_SIZE}
-    >
-      <g>
-        {#each Object.keys(KEYS) as key, i}
-          <rect 
-            x={paddings.left + i*(LEGEND_SIZE+KEYS[key][1])}
-            width={LEGEND_SIZE}
-            height={LEGEND_SIZE}
-            fill={KEYS[key][0]}
-          />
-          <text
-            x={paddings.left + i*(LEGEND_SIZE+KEYS[key][1]) + 1.2*LEGEND_SIZE}
-            y="15"
-            fill={KEYS[key][0]}
-          >
-            {key}
-          </text>
-        {/each}
-      </g>
-    </svg>
-  </div> -->
 </div>
 
 <style>
