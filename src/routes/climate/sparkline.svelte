@@ -4,7 +4,7 @@
   import { onMount } from 'svelte';
   export let data = [];
 
-  const KEYS = {"Honduras":["var(--red)", 100], "Nicaragua":["var(--blue)",100], "El Salvador":["var(--yellow)",100]};
+  const KEYS = {"Honduras":["var(--red)", 75], "Guatemala":["var(--blue)",80], "El Salvador":["var(--yellow)",84]};
   const LEGEND_SIZE = 20;
   let graphWidth = 1000;
   let graphHeight = 800;
