@@ -56,7 +56,7 @@
         };
 
         let durations = {
-        entryAnimation: 2000
+        entryAnimation: 3000
         };
 
         draw();
